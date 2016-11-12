@@ -1,4 +1,4 @@
-package com.paulmhutchinson.util;
+package com.paulmhutchinson.util.filewriter;
 
 import org.springframework.core.io.ClassPathResource;
 

@@ -1,6 +1,7 @@
-package com.paulmhutchinson.repository;
+package com.paulmhutchinson.util.stock;
 
-import com.paulmhutchinson.util.InputStreamUtil;
+import com.paulmhutchinson.domain.status.Status;
+import com.paulmhutchinson.util.filewriter.InputStreamUtil;
 import org.apache.commons.csv.CSVFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,23 +13,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-public class SymbolRepository {
+public class SymbolUtil {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(SymbolRepository.class);
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(SymbolUtil.class);
     private static final String CSV_PATH = "symbols.csv";
     private static final String CSV_COLUMN = "symbol";
     private static final CSVFormat CSV_FORMAT = CSVFormat.EXCEL.withFirstRecordAsHeader().withIgnoreHeaderCase();
 
-    public static List<String> buildSymbolList() {
+    public SymbolUtil() {
+    }
+
+    public List<String> getSymbols() {
         InputStream inputStream = getInputStream();
         try(InputStreamReader reader = new InputStreamReader(inputStream)) {
-            LOGGER.info("Reading symbol list...");
+            LOGGER.info(Status.READING_SYMBOLS.getMessage());
             return StreamSupport.stream(CSV_FORMAT.parse(reader).spliterator(), false)
                     .map(c -> c.get(CSV_COLUMN))
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            LOGGER.error("Error reading symbol list");
+            LOGGER.error(Status.ERROR_READING_SYMBOLS.getMessage());
             return new ArrayList<>();
         }
     }
