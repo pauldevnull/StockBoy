@@ -28,6 +28,6 @@ public class PercentChangeFromYearLowFilter extends Filter {
     }
 
     private boolean isWithinPercentOfYearLow(final BigDecimal percentChangeFromYearLow) {
-        return percentChangeFromYearLow.abs().compareTo(percentChangeFromYearLow) <= 0;
+        return this.percentChangeFromYearLow.abs().compareTo(percentChangeFromYearLow.abs()) <= 0;
     }
 }

@@ -1,6 +1,5 @@
-package com.paulmhutchinson.domain.filter.currency;
+package com.paulmhutchinson.domain.filter.percentchange;
 
-import com.paulmhutchinson.domain.stock.Currency;
 import com.paulmhutchinson.domain.stock.StockFactory;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,32 +7,32 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 import yahoofinance.Stock;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.assertTrue;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CurrencyFilterTest {
+public class PercentChangeFromYearHighFilterTest {
 
-    private static final Set<Currency> CURRENCIES = Collections.singleton(Currency.USD);
+    private static final BigDecimal PERCENT_CHANGE_FROM_YEAR_HIGH = new BigDecimal(50);
     private static final Set<String> VALID_SYMBOLS = new HashSet<>(Arrays.asList("A", "B", "C", "D", "E"));
-
     private Set<Stock> stocks = StockFactory.buildStocks();
-    private CurrencyFilter currencyFilter;
+
+    private PercentChangeFromYearHighFilter percentChangeFromYearHighFilter;
 
     @Before
     public void init() {
-        currencyFilter = new CurrencyFilter(CURRENCIES);
+        percentChangeFromYearHighFilter = new PercentChangeFromYearHighFilter(PERCENT_CHANGE_FROM_YEAR_HIGH);
     }
 
     @Test
-    public void apply_WithListOfStocksAndCurrencies_ExpectOnlyStocksWithValidCurrencies() {
+    public void apply_WithListOfStocksAndMaxPrice_ExpectOnlyStocksWithPriceEqualToOrLessThanMaxPrice() {
         Set<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
 
-        currencyFilter.apply(stocks);
+        percentChangeFromYearHighFilter.apply(stocks);
 
         assertTrue(stocks.equals(validStocks));
     }

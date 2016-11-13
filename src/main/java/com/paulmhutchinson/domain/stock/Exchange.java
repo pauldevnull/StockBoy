@@ -1,31 +1,24 @@
 package com.paulmhutchinson.domain.stock;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
+public enum Exchange {
 
-public enum  Exchange {
-
-    NASDAQ("^IXIC"),
-    SP("^GSPC"),
-    DOW("^DJI");
+    NASDAQ("^IXIC", "nasdaq_symbols.csv"),
+    SP("^GSPC", "sp_symbols.csv"),
+    DOW("^DJI", "dow_symbols.csv");
 
     private String exchange;
+    private String filename;
 
-    Exchange(String exchange) {
+    Exchange(String exchange, String filename) {
         this.exchange = exchange;
+        this.filename = filename;
     }
 
     public String getExchange() {
         return exchange;
     }
 
-    public static Set<String> getExchanges() {
-        return new HashSet<>(
-                Arrays.asList(Exchange.values())
-                        .stream()
-                        .map(Exchange::getExchange)
-                        .collect(Collectors.toSet()));
+    public String getFilename() {
+        return filename;
     }
 }

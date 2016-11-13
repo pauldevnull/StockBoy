@@ -11,15 +11,16 @@ import java.util.Set;
 public class FilterService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FilterService.class);
+
     private Set<Stock> stocks;
     private Set<Filter> filters;
 
-    public FilterService(Set<Stock> stocks, final Set<Filter> filters) {
+    public FilterService(final Set<Stock> stocks, final Set<Filter> filters) {
         this.stocks = stocks;
         this.filters = filters;
     }
 
-    public void filterStocks() {
+    public void filter() {
         try {
             LOGGER.info(Status.FILTERING_STOCKS.getMessage());
             filters.forEach(f -> f.apply(stocks));

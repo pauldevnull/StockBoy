@@ -12,8 +12,6 @@ import java.util.logging.Level;
 
 public class StockBoyApplication {
 
-    // TODO: use ListUtil.filter()
-
     private static final Logger LOGGER = LoggerFactory.getLogger(StockBoyApplication.class);
 
     public static void main(String[] args) throws Exception {

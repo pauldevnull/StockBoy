@@ -15,6 +15,7 @@ public class FileWriterService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FileWriterService.class);
     private static final String FILENAME = "output/" + new Date().toString() + ".txt";
     private static final String ENCODING = "UTF-8";
+
     @SerializedName("result") private Result result;
 
     public FileWriterService(Result result) {

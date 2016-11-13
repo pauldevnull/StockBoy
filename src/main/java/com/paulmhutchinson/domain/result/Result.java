@@ -6,10 +6,13 @@ import yahoofinance.Stock;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Set;
 
 public class Result implements Serializable {
 
+    @SerializedName("startTimestamp") private Date startTimestamp;
+    @SerializedName("endTimestamp") private Date endTimestamp;
     @SerializedName("executionTime") private long executionTime;
     @SerializedName("resultSize") private int resultSize;
     @SerializedName("type") private Set<Filter> filters;
@@ -18,14 +21,26 @@ public class Result implements Serializable {
     public Result() {
     }
 
-    public Result(final long executionTime,
+    public Result(final Date startTimestamp,
+                  final Date endTimestamp,
+                  final long executionTime,
                   final int resultSize,
                   final Set<Filter> filters,
                   final Set<Stock> stocks) {
+        this.startTimestamp = startTimestamp;
+        this.endTimestamp = endTimestamp;
         this.executionTime = executionTime;
         this.resultSize = resultSize;
         this.filters = filters;
         this.stocks = stocks;
+    }
+
+    public Date getStartTimestamp() {
+        return startTimestamp;
+    }
+
+    public Date getEndTimestamp() {
+        return endTimestamp;
     }
 
     public long getExecutionTime() {
@@ -47,6 +62,8 @@ public class Result implements Serializable {
     @Override
     public String toString() {
         return "results [\n" +
+               "\tstartTimestamp: " + startTimestamp +
+               "\tendTimestamp: " + endTimestamp +
                "\texecutionTime: " + executionTime +
                "\tresultSize: " + resultSize +
                "\ttype: " + Arrays.deepToString(filters.toArray()) +
