@@ -12,6 +12,8 @@ import java.util.logging.Level;
 
 public class StockBoyApplication {
 
+    // TODO: use ListUtil.filter()
+
     private static final Logger LOGGER = LoggerFactory.getLogger(StockBoyApplication.class);
 
     public static void main(String[] args) throws Exception {
@@ -23,6 +25,6 @@ public class StockBoyApplication {
 
         FileWriterService fileWriterService = new FileWriterService(result);
         fileWriterService.write();
-        LOGGER.info(Status.COMPLETED.getMessage());
+        LOGGER.info(Status.FINISHED.getMessage());
     }
 }

@@ -6,22 +6,22 @@ import yahoofinance.Stock;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 
 public class Result implements Serializable {
 
     @SerializedName("executionTime") private long executionTime;
     @SerializedName("resultSize") private int resultSize;
-    @SerializedName("filters") private List<Filter> filters;
-    @SerializedName("stocks") private List<Stock> stocks;
+    @SerializedName("filters") private Set<Filter> filters;
+    @SerializedName("stocks") private Set<Stock> stocks;
 
     public Result() {
     }
 
     public Result(final long executionTime,
                   final int resultSize,
-                  final List<Filter> filters,
-                  final List<Stock> stocks) {
+                  final Set<Filter> filters,
+                  final Set<Stock> stocks) {
         this.executionTime = executionTime;
         this.resultSize = resultSize;
         this.filters = filters;
@@ -36,11 +36,11 @@ public class Result implements Serializable {
         return resultSize;
     }
 
-    public List<Filter> getFilters() {
+    public Set<Filter> getFilters() {
         return filters;
     }
 
-    public List<Stock> getStocks() {
+    public Set<Stock> getStocks() {
         return stocks;
     }
 

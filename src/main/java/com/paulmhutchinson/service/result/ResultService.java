@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import yahoofinance.Stock;
 
-import java.util.List;
+import java.util.Set;
 
 public class ResultService {
 
@@ -20,8 +20,8 @@ public class ResultService {
 
     public ResultService() {
         StockService stockService = new StockService();
-        List<Stock> stocks = stockService.getStocks();
-        this.filterService = new FilterService(stocks);
+        Set<Stock> stocks = stockService.getStocks();
+        this.filterService = new FilterService(stocks, FilterUtil.FILTERS);
         this.timerService = new TimerService();
     }
 
@@ -29,7 +29,7 @@ public class ResultService {
         try {
             LOGGER.info(Status.RETRIEVING_RESULT.getMessage());
             timerService.start();;
-            final List<Stock> filteredStocks = filterService.getFilteredStocks();
+            final Set<Stock> filteredStocks = filterService.getFilteredStocks();
             timerService.stop();
             return new Result(timerService.getElapsed(), filteredStocks.size(), FilterUtil.FILTERS, filteredStocks);
         } catch (Exception e) {

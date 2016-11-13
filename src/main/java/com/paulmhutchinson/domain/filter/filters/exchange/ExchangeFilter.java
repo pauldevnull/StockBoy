@@ -2,31 +2,33 @@ package com.paulmhutchinson.domain.filter.filters.exchange;
 
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.FilterType;
+import org.apache.commons.collections4.CollectionUtils;
 import yahoofinance.Stock;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ExchangeFilter extends Filter {
 
-    private transient List<String> exchanges;
+    private transient Set<String> exchanges;
 
-    public ExchangeFilter(List<String> exchanges) {
+    public ExchangeFilter(Set<String> exchanges) {
         super(FilterType.EXCHANGE.toString(), exchanges.toString());
         this.exchanges = exchanges;
     }
 
     @Override
-    public List<Stock> apply(List<Stock> stocks) {
+    public Set<Stock> apply(Set<Stock> stocks) {
         try {
             printStatusToLogger();
-            return stocks.stream()
+            Set<Stock> filtered = stocks.stream()
                     .filter(s -> isValidExchange(s.getStockExchange()))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toSet());
+            return new HashSet<>(CollectionUtils.intersection(stocks, filtered));
         } catch (Exception e) {
             printErrorToLogger();
-            return new ArrayList<>();
+            return new HashSet<>();
         }
     }
 

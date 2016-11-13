@@ -15,7 +15,7 @@ public enum Status {
     ERROR_FILTERING_STOCKS("\t\tError filtering stocks"),
     ERROR_APPLYING_FILTER("\t\t\t\tError applying {} filter with value(s) {}"),
     ERROR_WRITING("\t\tError writing to file"),
-    COMPLETED("\t\t\tCompleted");
+    FINISHED("\t\t\tFinished!");
 
     private String message;
 

@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import yahoofinance.Stock;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 public abstract class Filter implements Serializable {
 
@@ -21,7 +21,7 @@ public abstract class Filter implements Serializable {
         this.filterValue = filterValue;
     }
 
-    public abstract List<Stock> apply(final List<Stock> stocks);
+    public abstract Set<Stock> apply(final Set<Stock> stocks);
 
     protected void printStatusToLogger() {
         LOGGER.info(Status.APPLYING_FILTER.getMessage(), filterType, filterValue);

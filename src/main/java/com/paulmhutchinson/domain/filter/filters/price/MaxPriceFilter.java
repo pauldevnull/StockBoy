@@ -5,8 +5,8 @@ import com.paulmhutchinson.domain.filter.FilterType;
 import yahoofinance.Stock;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MaxPriceFilter extends Filter {
@@ -19,19 +19,19 @@ public class MaxPriceFilter extends Filter {
     }
 
     @Override
-    public List<Stock> apply(List<Stock> stocks) {
+    public Set<Stock> apply(Set<Stock> stocks) {
         try {
             printStatusToLogger();
             return stocks.stream()
                     .filter(s -> isBelowMaxPrice(s.getQuote().getPrice()))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toSet());
         } catch (Exception e) {
             printErrorToLogger();
-            return new ArrayList<>();
+            return new HashSet<>();
         }
     }
 
     private boolean isBelowMaxPrice(final BigDecimal price) {
-        return price.compareTo(maxPrice) < 0;
+        return price.compareTo(maxPrice) <= 0;
     }
 }
