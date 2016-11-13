@@ -23,11 +23,10 @@ public class FilterService {
     public Set<Stock> getFilteredStocks() {
         try {
             LOGGER.info(Status.FILTERING_STOCKS.getMessage());
-            Set filtered = new HashSet<>(stocks);
+            Set<Stock> filtered = new HashSet<>(stocks);
             for (Filter filter : filters) {
                 filtered = filter.apply(filtered);
             }
-
             return filtered;
         } catch (Exception e) {
             LOGGER.error(Status.ERROR_FILTERING_STOCKS.getMessage());
