@@ -27,10 +27,6 @@ public abstract class Filter implements Serializable {
         LOGGER.info(Status.APPLYING_FILTER.getMessage(), filterType, filterValue);
     }
 
-    protected void printErrorToLogger() {
-        LOGGER.info(Status.ERROR_APPLYING_FILTER.getMessage(), filterType, filterValue);
-    }
-
     @Override
     public String toString() {
         return "filterType:" + filterType + ",\n" +

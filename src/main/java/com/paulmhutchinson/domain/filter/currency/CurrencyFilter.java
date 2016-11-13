@@ -19,15 +19,15 @@ public class CurrencyFilter extends Filter {
 
     @Override
     public void apply(Set<Stock> stocks) {
-        try {
-            printStatusToLogger();
-            CollectionUtils.filter(stocks, stock -> isValidCurrency(stock.getCurrency()));
-        } catch (Exception e) {
-            printErrorToLogger();
-        }
+        printStatusToLogger();
+        CollectionUtils.filter(stocks, stock -> isValidCurrency(stock.getCurrency()));
     }
 
     private boolean isValidCurrency(final String currency) {
         return currencies.stream().filter(c -> c.toString().equals(currency)).count() > 0;
+    }
+
+    public Set<Currency> getCurrencies() {
+        return currencies;
     }
 }

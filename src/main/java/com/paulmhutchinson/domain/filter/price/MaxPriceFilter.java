@@ -19,12 +19,8 @@ public class MaxPriceFilter extends Filter {
 
     @Override
     public void apply(Set<Stock> stocks) {
-        try {
-            printStatusToLogger();
-            CollectionUtils.filter(stocks, stock -> isBelowMaxPrice(stock.getQuote().getPrice()));
-        } catch (Exception e) {
-            printErrorToLogger();
-        }
+        printStatusToLogger();
+        CollectionUtils.filter(stocks, stock -> isBelowMaxPrice(stock.getQuote().getPrice()));
     }
 
     private boolean isBelowMaxPrice(final BigDecimal price) {

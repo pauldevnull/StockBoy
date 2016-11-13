@@ -19,12 +19,8 @@ public class MinPriceFilter extends Filter {
 
     @Override
     public void apply(Set<Stock> stocks) {
-        try {
-            printStatusToLogger();
-            CollectionUtils.filter(stocks, stock -> isAboveMinPrice(stock.getQuote().getPrice()));
-        } catch (Exception e) {
-            printErrorToLogger();
-        }
+        printStatusToLogger();
+        CollectionUtils.filter(stocks, stock -> isAboveMinPrice(stock.getQuote().getPrice()));
     }
 
     private boolean isAboveMinPrice(final BigDecimal price) {

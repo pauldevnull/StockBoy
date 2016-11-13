@@ -1,5 +1,10 @@
 package com.paulmhutchinson.domain.stock;
 
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 public enum Exchange {
 
     NASDAQ("^IXIC", "nasdaq_symbols.csv"),
@@ -20,5 +25,13 @@ public enum Exchange {
 
     public String getFilename() {
         return filename;
+    }
+
+    public static Set<String> getExchanges() {
+        return new LinkedHashSet<>(
+                Arrays.asList(Exchange.values())
+                        .stream()
+                        .map(Exchange::getExchange)
+                        .collect(Collectors.toSet()));
     }
 }

@@ -21,7 +21,7 @@ public class CurrencyFilterTest {
     private static final Set<Currency> CURRENCIES = Collections.singleton(Currency.USD);
     private static final Set<String> VALID_SYMBOLS = new HashSet<>(Arrays.asList("A", "B", "C", "D", "E"));
 
-    private Set<Stock> stocks = StockFactory.buildStocks();
+    private Set<Stock> stocks = StockFactory.buildDefaultStocks();
     private CurrencyFilter currencyFilter;
 
     @Before
@@ -30,7 +30,7 @@ public class CurrencyFilterTest {
     }
 
     @Test
-    public void apply_WithListOfStocksAndCurrencies_ExpectOnlyStocksWithValidCurrencies() {
+    public void apply_WithListOfStocks_ExpectOnlyStocksWithValidCurrencies() {
         Set<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
 
         currencyFilter.apply(stocks);

@@ -32,7 +32,7 @@ public class FilterServiceTest {
     private static final BigDecimal MAX_PRICE = new BigDecimal(16);
     private static final Set<String> VALID_SYMBOLS = new HashSet<>(Arrays.asList("E", "C", "D"));
 
-    private Set<Stock> stocks = StockFactory.buildStocks();
+    private Set<Stock> stocks = StockFactory.buildDefaultStocks();
     private FilterService filterService;
 
     @Before

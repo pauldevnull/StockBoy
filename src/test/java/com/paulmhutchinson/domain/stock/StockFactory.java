@@ -4,6 +4,7 @@ import yahoofinance.Stock;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -13,8 +14,8 @@ public class StockFactory {
 
     private static final List<String> SYMBOLS = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J");
 
-    public static Set<Stock> buildStocks() {
-        return IntStream.range(0, 10)
+    public static Set<Stock> buildDefaultStocks() {
+        return new LinkedHashSet<>(IntStream.range(0, 10)
                 .mapToObj(i ->
                         StockBuilder.aStock()
                                 .setSymbol(SYMBOLS.get(i))
@@ -24,7 +25,7 @@ public class StockFactory {
                                 .setYearLow(new BigDecimal(20))
                                 .setYearHigh(new BigDecimal(20))
                                 .build())
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList()));
     }
 
     public static Set<Stock> getStocksFromSymbols(Set<Stock> stocks, Set<String> symbols) {

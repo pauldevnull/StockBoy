@@ -18,12 +18,8 @@ public class ExchangeFilter extends Filter {
 
     @Override
     public void apply(Set<Stock> stocks) {
-        try {
-            printStatusToLogger();
-            CollectionUtils.filter(stocks, stock -> isValidExchange(stock.getStockExchange()));
-        } catch (Exception e) {
-            printErrorToLogger();
-        }
+        printStatusToLogger();
+        CollectionUtils.filter(stocks, stock -> isValidExchange(stock.getStockExchange()));
     }
 
     private boolean isValidExchange(final String exchange) {

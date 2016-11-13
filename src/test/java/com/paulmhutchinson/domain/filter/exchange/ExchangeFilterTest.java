@@ -20,7 +20,7 @@ public class ExchangeFilterTest {
 
     private static final Set<String> EXCHANGES = new HashSet<>(Collections.singletonList(Exchange.DOW.getExchange()));
     private static final Set<String> VALID_SYMBOLS = new HashSet<>(Arrays.asList("A", "B", "C", "D", "E"));
-    private Set<Stock> stocks = StockFactory.buildStocks();
+    private Set<Stock> stocks = StockFactory.buildDefaultStocks();
     private ExchangeFilter exchangeFilter;
 
     @Before

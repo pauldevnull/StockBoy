@@ -7,11 +7,11 @@ import com.paulmhutchinson.service.filter.FilterService;
 import com.paulmhutchinson.service.timer.TimerService;
 import com.paulmhutchinson.util.filter.FilterUtils;
 import com.paulmhutchinson.util.stock.StockUtils;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import yahoofinance.Stock;
 
-import java.util.Date;
 import java.util.Set;
 
 public class ResultService {
@@ -29,11 +29,11 @@ public class ResultService {
     public Result getResult() {
         try {
             LOGGER.info(Status.RETRIEVING_RESULT.getMessage());
-            Date startTimestamp = new Date();
+            DateTime startTimestamp = DateTime.now();
             timerService.start();
             filterService.filter();
             timerService.stop();
-            Date stopTimestamp = new Date();
+            DateTime stopTimestamp = DateTime.now();
             return ResultBuilder.aResult()
                     .setStartTimestamp(startTimestamp)
                     .setStopTimestamp(stopTimestamp)
@@ -44,7 +44,7 @@ public class ResultService {
                     .build();
         } catch (Exception e) {
             LOGGER.error(Status.ERROR_RETRIEVING_RESULT.getMessage());
-            return new Result();
+            return ResultBuilder.aResult().build();
         }
     }
 }

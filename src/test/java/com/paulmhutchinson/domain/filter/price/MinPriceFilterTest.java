@@ -20,7 +20,7 @@ public class MinPriceFilterTest {
     private static final BigDecimal MIN_PRICE = new BigDecimal(12);
     private static final Set<String> VALID_SYMBOLS = new HashSet<>(Arrays.asList("F", "G", "H", "I", "J"));
 
-    private Set<Stock> stocks = StockFactory.buildStocks();
+    private Set<Stock> stocks = StockFactory.buildDefaultStocks();
     private MinPriceFilter minPriceFilter;
 
     @Before
