@@ -1,5 +1,6 @@
 package com.paulmhutchinson.domain.filter.exchange;
 
+import com.paulmhutchinson.domain.stock.Exchange;
 import com.paulmhutchinson.domain.stock.StockFactory;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Before;

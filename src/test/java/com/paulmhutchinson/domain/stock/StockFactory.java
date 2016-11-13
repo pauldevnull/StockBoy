@@ -1,6 +1,5 @@
 package com.paulmhutchinson.domain.stock;
 
-import com.paulmhutchinson.domain.filter.currency.Currency;
 import yahoofinance.Stock;
 
 import java.math.BigDecimal;
@@ -20,7 +19,7 @@ public class StockFactory {
                         StockBuilder.aStock()
                                 .setSymbol(SYMBOLS.get(i))
                                 .setPrice(new BigDecimal((i + 1) * 2))
-                                .setCurrency((i % 2) == 0 ? Currency.USD : Currency.EUR)
+                                .setCurrency((i % 2) == 0 ? Currency.USD.toString() : Currency.EUR.toString())
                                 .build())
                 .collect(Collectors.toSet());
     }

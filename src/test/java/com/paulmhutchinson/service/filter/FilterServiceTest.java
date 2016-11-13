@@ -2,9 +2,9 @@
 package com.paulmhutchinson.service.filter;
 
 import com.paulmhutchinson.domain.filter.Filter;
-import com.paulmhutchinson.domain.filter.currency.Currency;
+import com.paulmhutchinson.domain.stock.Currency;
 import com.paulmhutchinson.domain.filter.currency.CurrencyFilter;
-import com.paulmhutchinson.domain.filter.exchange.Exchange;
+import com.paulmhutchinson.domain.stock.Exchange;
 import com.paulmhutchinson.domain.filter.exchange.ExchangeFilter;
 import com.paulmhutchinson.domain.filter.price.MaxPriceFilter;
 import com.paulmhutchinson.domain.filter.price.MinPriceFilter;

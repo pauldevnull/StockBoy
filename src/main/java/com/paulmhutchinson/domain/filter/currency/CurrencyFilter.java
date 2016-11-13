@@ -2,6 +2,7 @@ package com.paulmhutchinson.domain.filter.currency;
 
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.FilterType;
+import com.paulmhutchinson.domain.stock.Currency;
 import yahoofinance.Stock;
 
 import java.util.HashSet;

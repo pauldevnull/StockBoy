@@ -1,4 +1,4 @@
-package com.paulmhutchinson.domain.filter.exchange;
+package com.paulmhutchinson.domain.stock;
 
 import java.util.Arrays;
 import java.util.HashSet;

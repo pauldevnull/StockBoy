@@ -33,7 +33,7 @@ public class MinPriceFilterTest {
     public void apply_WithListOfStocksAndMinPrice_ExpectOnlyStocksWithPriceEqualToOrGreaterThanMinPrice() {
         Set<Stock> stocks = new HashSet<>(CollectionUtils.union(STOCKS_AT_OR_BELOW_PRICE, STOCKS_AT_OR_ABOVE_PRICE));
 
-        Set<Stock> filteredStocks = minPriceFilter.apply(new HashSet<>(stocks));
+        Set<Stock> filteredStocks = minPriceFilter.apply(stocks);
 
         assertFalse(CollectionUtils.containsAny(filteredStocks, getWithoutPivot()));
         assertTrue(filteredStocks.containsAll(STOCKS_AT_OR_ABOVE_PRICE));

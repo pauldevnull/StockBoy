@@ -1,5 +1,6 @@
 package com.paulmhutchinson.domain.filter.currency;
 
+import com.paulmhutchinson.domain.stock.Currency;
 import com.paulmhutchinson.domain.stock.StockFactory;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Before;
