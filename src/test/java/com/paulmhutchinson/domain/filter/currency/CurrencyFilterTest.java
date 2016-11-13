@@ -12,7 +12,6 @@ import yahoofinance.Stock;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -21,7 +20,7 @@ import static org.junit.Assert.assertTrue;
 public class CurrencyFilterTest {
 
     private static final Set<Currency> CURRENCIES = Collections.singleton(Currency.USD);
-    private static final Set<Stock> STOCKS = StockFactory.buildStocks(10);
+    private Set<Stock> stocks = StockFactory.buildStocks(10);
     private CurrencyFilter currencyFilter;
 
     @Before
@@ -31,22 +30,22 @@ public class CurrencyFilterTest {
 
     @Test
     public void apply_WithListOfStocksAndCurrencies_ExpectOnlyStocksWithValidCurrencies() {
-        Set<Stock> filteredStocks = currencyFilter.apply(new HashSet<>(STOCKS));
+        currencyFilter.apply(stocks);
 
-        assertFalse(CollectionUtils.containsAny(filteredStocks, getInValidStocks()));
-        assertTrue(filteredStocks.containsAll(getValidStocks()));
+        assertFalse(CollectionUtils.containsAny(stocks, getInValidStocks()));
+        assertTrue(stocks.containsAll(getValidStocks()));
     }
 
     private Set<Stock> getValidStocks() {
-        return STOCKS.stream()
-                .filter(s -> isValid(s.getCurrency()))
-                .collect(Collectors.toSet());
+        Set<Stock> stocks = this.stocks;
+        CollectionUtils.filter(stocks, stock -> isValid(stock.getCurrency()));
+        return stocks;
     }
 
     private Set<Stock> getInValidStocks() {
-        return STOCKS.stream()
-                .filter(s -> !isValid(s.getCurrency()))
-                .collect(Collectors.toSet());
+        Set<Stock> stocks = this.stocks;
+        CollectionUtils.filter(stocks, stock -> !isValid(stock.getCurrency()));
+        return stocks;
     }
 
     private boolean isValid(String currency) {

@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import yahoofinance.Stock;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class FilterService {
@@ -15,22 +14,17 @@ public class FilterService {
     private Set<Stock> stocks;
     private Set<Filter> filters;
 
-    public FilterService(final Set<Stock> stocks, final Set<Filter> filters) {
+    public FilterService(Set<Stock> stocks, final Set<Filter> filters) {
         this.stocks = stocks;
         this.filters = filters;
     }
 
-    public Set<Stock> getFilteredStocks() {
+    public void filterStocks() {
         try {
             LOGGER.info(Status.FILTERING_STOCKS.getMessage());
-            Set<Stock> filtered = new HashSet<>(stocks);
-            for (Filter filter : filters) {
-                filtered = filter.apply(filtered);
-            }
-            return filtered;
+            filters.forEach(f -> f.apply(stocks));
         } catch (Exception e) {
             LOGGER.error(Status.ERROR_FILTERING_STOCKS.getMessage());
-            return new HashSet<>();
         }
     }
 

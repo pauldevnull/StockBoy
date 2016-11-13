@@ -5,9 +5,7 @@ import com.paulmhutchinson.domain.filter.FilterType;
 import org.apache.commons.collections4.CollectionUtils;
 import yahoofinance.Stock;
 
-import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class ExchangeFilter extends Filter {
 
@@ -19,16 +17,12 @@ public class ExchangeFilter extends Filter {
     }
 
     @Override
-    public Set<Stock> apply(Set<Stock> stocks) {
+    public void apply(Set<Stock> stocks) {
         try {
             printStatusToLogger();
-            Set<Stock> filtered = stocks.stream()
-                    .filter(s -> isValidExchange(s.getStockExchange()))
-                    .collect(Collectors.toSet());
-            return new HashSet<>(CollectionUtils.intersection(stocks, filtered));
+            CollectionUtils.filter(stocks, stock -> isValidExchange(stock.getStockExchange()));
         } catch (Exception e) {
             printErrorToLogger();
-            return new HashSet<>();
         }
     }
 

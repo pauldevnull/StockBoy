@@ -33,10 +33,10 @@ public class MaxPriceFilterTest {
     public void apply_WithListOfStocksAndMaxPrice_ExpectOnlyStocksWithPriceEqualToOrLessThanMaxPrice() {
         Set<Stock> stocks = new HashSet<>(CollectionUtils.union(STOCKS_AT_OR_BELOW_PRICE, STOCKS_AT_OR_ABOVE_PRICE));
 
-        Set<Stock> filteredStocks = maxPriceFilter.apply(stocks);
+        maxPriceFilter.apply(stocks);
 
-        assertFalse(CollectionUtils.containsAny(filteredStocks, getWithoutPivot()));
-        assertTrue(filteredStocks.containsAll(STOCKS_AT_OR_BELOW_PRICE));
+        assertFalse(CollectionUtils.containsAny(stocks, getWithoutPivot()));
+        assertTrue(stocks.containsAll(STOCKS_AT_OR_BELOW_PRICE));
     }
 
     private Set<Stock> getWithoutPivot() {

@@ -3,11 +3,10 @@ package com.paulmhutchinson.domain.filter.currency;
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.FilterType;
 import com.paulmhutchinson.domain.stock.Currency;
+import org.apache.commons.collections4.CollectionUtils;
 import yahoofinance.Stock;
 
-import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class CurrencyFilter extends Filter {
 
@@ -19,15 +18,12 @@ public class CurrencyFilter extends Filter {
     }
 
     @Override
-    public Set<Stock> apply(Set<Stock> stocks) {
+    public void apply(Set<Stock> stocks) {
         try {
             printStatusToLogger();
-            return stocks.stream()
-                    .filter(s -> isValidCurrency(s.getCurrency()))
-                    .collect(Collectors.toSet());
+            CollectionUtils.filter(stocks, stock -> isValidCurrency(stock.getCurrency()));
         } catch (Exception e) {
             printErrorToLogger();
-            return new HashSet<>();
         }
     }
 

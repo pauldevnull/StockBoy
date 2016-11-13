@@ -15,12 +15,14 @@ import java.util.Set;
 public class ResultService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ResultService.class);
+    private StockService stockService;
+    private Set<Stock> stocks;
     private FilterService filterService;
     private TimerService timerService;
 
     public ResultService() {
-        StockService stockService = new StockService();
-        Set<Stock> stocks = stockService.getStocks();
+        this.stockService = new StockService();
+        stocks = stockService.getStocks();
         this.filterService = new FilterService(stocks, FilterUtil.FILTERS);
         this.timerService = new TimerService();
     }
@@ -29,9 +31,9 @@ public class ResultService {
         try {
             LOGGER.info(Status.RETRIEVING_RESULT.getMessage());
             timerService.start();;
-            final Set<Stock> filteredStocks = filterService.getFilteredStocks();
+            filterService.filterStocks();
             timerService.stop();
-            return new Result(timerService.getElapsed(), filteredStocks.size(), FilterUtil.FILTERS, filteredStocks);
+            return new Result(timerService.getElapsed(), stocks.size(), FilterUtil.FILTERS, stocks);
         } catch (Exception e) {
             LOGGER.error(Status.ERROR_RETRIEVING_RESULT.getMessage());
             return new Result();

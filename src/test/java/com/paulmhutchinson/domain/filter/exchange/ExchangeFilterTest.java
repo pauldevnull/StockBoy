@@ -21,7 +21,7 @@ import static org.junit.Assert.assertTrue;
 public class ExchangeFilterTest {
 
     private static final Set<String> EXCHANGES = new HashSet<>(Arrays.asList(Exchange.DOW.getExchange(), Exchange.NASDAQ.getExchange(), Exchange.SP.getExchange()));
-    private static final Set<Stock> STOCKS = StockFactory.buildStocks(10);
+    private Set<Stock> stocks = StockFactory.buildStocks(10);
     private ExchangeFilter exchangeFilter;
 
     @Before
@@ -31,20 +31,20 @@ public class ExchangeFilterTest {
 
     @Test
     public void apply_WithListOfStocksAndExchanges_ExpectOnlyStocksWithValidExchanges() {
-        Set<Stock> filteredStocks = exchangeFilter.apply(new HashSet<>(STOCKS));
+        exchangeFilter.apply(stocks);
 
-        assertFalse(CollectionUtils.containsAny(filteredStocks, getInValidStocks()));
-        assertTrue(filteredStocks.containsAll(getValidStocks()));
+        assertFalse(CollectionUtils.containsAny(stocks, getInValidStocks()));
+        assertTrue(stocks.containsAll(getValidStocks()));
     }
 
     private Set<Stock> getValidStocks() {
-        return STOCKS.stream()
-                .filter(s -> isValid(s.getStockExchange()))
-                .collect(Collectors.toSet());
+        Set<Stock> stocks = this.stocks;
+        CollectionUtils.filter(stocks, stock -> isValid(stock.getStockExchange()));
+        return stocks;
     }
 
     private Set<Stock> getInValidStocks() {
-        return STOCKS.stream()
+        return stocks.stream()
                 .filter(s -> !isValid(s.getStockExchange()))
                 .collect(Collectors.toSet());
     }

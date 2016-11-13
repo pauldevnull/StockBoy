@@ -2,12 +2,12 @@
 package com.paulmhutchinson.service.filter;
 
 import com.paulmhutchinson.domain.filter.Filter;
-import com.paulmhutchinson.domain.stock.Currency;
 import com.paulmhutchinson.domain.filter.currency.CurrencyFilter;
-import com.paulmhutchinson.domain.stock.Exchange;
 import com.paulmhutchinson.domain.filter.exchange.ExchangeFilter;
 import com.paulmhutchinson.domain.filter.price.MaxPriceFilter;
 import com.paulmhutchinson.domain.filter.price.MinPriceFilter;
+import com.paulmhutchinson.domain.stock.Currency;
+import com.paulmhutchinson.domain.stock.Exchange;
 import com.paulmhutchinson.domain.stock.StockFactory;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Before;
@@ -30,7 +30,6 @@ import static org.junit.Assert.assertTrue;
 public class FilterServiceTest {
 
     private static final int STOCK_COUNT = 10;
-    private static final Set<Stock> STOCKS = StockFactory.buildStocks(STOCK_COUNT);
     private static final Set<Currency> CURRENCIES = new HashSet<>(Collections.singletonList(Currency.USD));
     private static final Set<String> EXCHANGES = new HashSet<>(Arrays.asList(Exchange.DOW.getExchange(), Exchange.NASDAQ.getExchange(), Exchange.SP.getExchange()));
     private static final BigDecimal MIN_PRICE = new BigDecimal(5);
@@ -42,19 +41,21 @@ public class FilterServiceTest {
     private static final Set<Filter> FILTERS = new HashSet<>(Arrays.asList(
         CURRENCY_FILTER, EXCHANGE_FILTER, MIN_PRICE_FILTER, MAX_PRICE_FILTER
     ));
+
+    private Set<Stock> stocks = StockFactory.buildStocks(STOCK_COUNT);
     private FilterService filterService;
 
     @Before
     public void init() {
-        filterService = new FilterService(STOCKS, FILTERS);
+        filterService = new FilterService(stocks, FILTERS);
     }
 
     @Test
     public void getFilteredStocks_withAllFilters_expectOnlyStocksWithinConstraints() {
-        Set<Stock> filteredStocks = filterService.getFilteredStocks();
+        filterService.filterStocks();
 
-        assertFalse(CollectionUtils.containsAny(filteredStocks, getStocksOutsideConstraints()));
-        assertTrue(filteredStocks.containsAll(getStocksWithinConstraints()));
+        assertFalse(CollectionUtils.containsAny(stocks, getStocksOutsideConstraints()));
+        assertTrue(stocks.containsAll(getStocksWithinConstraints()));
     }
 
     private Set<Stock> getStocksWithinConstraints() {
@@ -72,43 +73,47 @@ public class FilterServiceTest {
     }
 
     private Set<Stock> getStocksWithValidCurrency() {
-        return CURRENCY_FILTER.apply(STOCKS);
+        Set<Stock> stocks = this.stocks;
+        CURRENCY_FILTER.apply(stocks);
+        return stocks;
     }
 
     private Set<Stock> getStocksWithInvalidCurrency() {
         Set<Stock> stocksWithValidCurrency = getStocksWithValidCurrency();
-        return STOCKS.stream().filter(stocksWithValidCurrency::contains).collect(Collectors.toSet());
+        return stocks.stream().filter(stocksWithValidCurrency::contains).collect(Collectors.toSet());
     }
 
     private Set<Stock> getStocksWithValidExchange() {
-        return EXCHANGE_FILTER.apply(STOCKS);
+        Set<Stock> stocks = this.stocks;
+        EXCHANGE_FILTER.apply(stocks);
+        return stocks;
     }
 
     private Set<Stock> getStocksWithInvalidExchange() {
         Set<Stock> stocksWithValidExchange = getStocksWithValidExchange();
-        return STOCKS.stream().filter(stocksWithValidExchange::contains).collect(Collectors.toSet());
+        return stocks.stream().filter(stocksWithValidExchange::contains).collect(Collectors.toSet());
     }
 
     private Set<Stock> getStocksBelowMinPrice() {
-        return STOCKS.stream()
+        return stocks.stream()
                 .filter(s -> s.getQuote().getPrice().compareTo(MIN_PRICE) < 0)
                 .collect(Collectors.toSet());
     }
 
     private Set<Stock> getStocksAboveMinPrice() {
-        return STOCKS.stream()
+        return stocks.stream()
                 .filter(s -> s.getQuote().getPrice().compareTo(MIN_PRICE) > 0)
                 .collect(Collectors.toSet());
     }
 
     private Set<Stock> getStocksBelowMaxPrice() {
-        return STOCKS.stream()
+        return stocks.stream()
                 .filter(s -> s.getQuote().getPrice().compareTo(MAX_PRICE) < 0)
                 .collect(Collectors.toSet());
     }
 
     private Set<Stock> getStocksAboveMaxPrice() {
-        return STOCKS.stream()
+        return stocks.stream()
                 .filter(s -> s.getQuote().getPrice().compareTo(MAX_PRICE) > 0)
                 .collect(Collectors.toSet());
     }

@@ -6,9 +6,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import yahoofinance.Stock;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class PercentChangeFromYearHighFilter extends Filter {
 
@@ -20,16 +18,12 @@ public class PercentChangeFromYearHighFilter extends Filter {
     }
 
     @Override
-    public Set<Stock> apply(Set<Stock> stocks) {
+    public void apply(Set<Stock> stocks) {
         try {
             printStatusToLogger();
-            Set<Stock> filtered = stocks.stream()
-                    .filter(s -> isWithinPercentOfYearHigh(s.getQuote().getChangeFromYearHighInPercent()))
-                    .collect(Collectors.toSet());
-            return new HashSet<>(CollectionUtils.intersection(stocks, filtered));
+            CollectionUtils.filter(stocks, stock -> isWithinPercentOfYearHigh(stock.getQuote().getChangeFromYearHighInPercent()));
         } catch (Exception e) {
             printErrorToLogger();
-            return new HashSet<>();
         }
     }
 

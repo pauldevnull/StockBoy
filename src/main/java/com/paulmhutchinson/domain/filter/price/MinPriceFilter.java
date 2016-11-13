@@ -2,12 +2,11 @@ package com.paulmhutchinson.domain.filter.price;
 
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.FilterType;
+import org.apache.commons.collections4.CollectionUtils;
 import yahoofinance.Stock;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class MinPriceFilter extends Filter {
 
@@ -19,15 +18,12 @@ public class MinPriceFilter extends Filter {
     }
 
     @Override
-    public Set<Stock> apply(Set<Stock> stocks) {
+    public void apply(Set<Stock> stocks) {
         try {
             printStatusToLogger();
-            return stocks.stream()
-                    .filter(s -> isAboveMinPrice(s.getQuote().getPrice()))
-                    .collect(Collectors.toSet());
+            CollectionUtils.filter(stocks, stock -> isAboveMinPrice(stock.getQuote().getPrice()));
         } catch (Exception e) {
             printErrorToLogger();
-            return new HashSet<>();
         }
     }
 

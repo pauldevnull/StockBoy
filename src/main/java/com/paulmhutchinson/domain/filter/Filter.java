@@ -21,7 +21,7 @@ public abstract class Filter implements Serializable {
         this.filterValue = filterValue;
     }
 
-    public abstract Set<Stock> apply(final Set<Stock> stocks);
+    public abstract void apply(final Set<Stock> stocks);
 
     protected void printStatusToLogger() {
         LOGGER.info(Status.APPLYING_FILTER.getMessage(), filterType, filterValue);
