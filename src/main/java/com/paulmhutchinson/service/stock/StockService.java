@@ -17,7 +17,7 @@ public class StockService {
     private List<String> symbols;
 
     public StockService() {
-        symbols = new SymbolUtil().getSymbols().subList(0, 50);
+        symbols = new SymbolUtil().getSymbols().subList(0, 5000);
     }
 
     public Set<Stock> getStocks() {

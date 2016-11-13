@@ -1,4 +1,4 @@
-package com.paulmhutchinson.domain.filter.filters.exchange;
+package com.paulmhutchinson.domain.filter.exchange;
 
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.FilterType;
@@ -14,7 +14,7 @@ public class ExchangeFilter extends Filter {
     private transient Set<String> exchanges;
 
     public ExchangeFilter(Set<String> exchanges) {
-        super(FilterType.EXCHANGE.toString(), exchanges.toString());
+        super(FilterType.EXCHANGE, exchanges.toString());
         this.exchanges = exchanges;
     }
 

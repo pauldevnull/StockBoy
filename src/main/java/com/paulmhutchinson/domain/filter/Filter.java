@@ -13,10 +13,10 @@ public abstract class Filter implements Serializable {
 
     private static transient final Logger LOGGER = LoggerFactory.getLogger(Filter.class);
 
-    @SerializedName("filterType") private String filterType;
+    @SerializedName("filterType") private FilterType filterType;
     @SerializedName("filterValue") private String filterValue;
 
-    protected Filter(String filterType, String filterValue) {
+    protected Filter(FilterType filterType, String filterValue) {
         this.filterType = filterType;
         this.filterValue = filterValue;
     }

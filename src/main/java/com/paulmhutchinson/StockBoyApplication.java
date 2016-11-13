@@ -17,7 +17,7 @@ public class StockBoyApplication {
     private static final Logger LOGGER = LoggerFactory.getLogger(StockBoyApplication.class);
 
     public static void main(String[] args) throws Exception {
-        YahooFinance.logger.setLevel(Level.OFF);
+        YahooFinance.logger.setLevel(Level.SEVERE);
 
         LOGGER.info(Status.STARTING.getMessage());
         ResultService resultService = new ResultService();

@@ -1,5 +1,6 @@
 package com.paulmhutchinson.domain.stock;
 
+import com.paulmhutchinson.domain.filter.currency.Currency;
 import yahoofinance.Stock;
 
 import java.math.BigDecimal;
@@ -13,12 +14,13 @@ public class StockFactory {
 
     private static final List<String> SYMBOLS = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J");
 
-    public static Set<Stock> buildStocksAroundPrice(BigDecimal price) {
-        return IntStream.range(0, price.intValue())
+    public static Set<Stock> buildStocks(int count) {
+        return IntStream.range(0, count)
                 .mapToObj(i ->
                         StockBuilder.aStock()
                                 .setSymbol(SYMBOLS.get(i))
                                 .setPrice(new BigDecimal((i + 1) * 2))
+                                .setCurrency((i % 2) == 0 ? Currency.USD : Currency.EUR)
                                 .build())
                 .collect(Collectors.toSet());
     }

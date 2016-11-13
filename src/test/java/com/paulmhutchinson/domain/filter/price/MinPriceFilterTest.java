@@ -1,4 +1,4 @@
-package com.paulmhutchinson.domain.filter.filters.price;
+package com.paulmhutchinson.domain.filter.price;
 
 import com.paulmhutchinson.domain.stock.StockFactory;
 import org.apache.commons.collections4.CollectionUtils;

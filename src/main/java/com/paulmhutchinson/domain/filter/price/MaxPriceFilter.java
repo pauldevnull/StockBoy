@@ -1,4 +1,4 @@
-package com.paulmhutchinson.domain.filter.filters.price;
+package com.paulmhutchinson.domain.filter.price;
 
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.FilterType;
@@ -14,7 +14,7 @@ public class MaxPriceFilter extends Filter {
     private transient BigDecimal maxPrice;
 
     public MaxPriceFilter(BigDecimal maxPrice) {
-        super(FilterType.MAX_PRICE.toString(), maxPrice.toString());
+        super(FilterType.MAX_PRICE, maxPrice.toString());
         this.maxPrice = maxPrice;
     }
 

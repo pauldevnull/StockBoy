@@ -1,4 +1,4 @@
-package com.paulmhutchinson.domain.filter.filters.percentchange;
+package com.paulmhutchinson.domain.filter.percentchange;
 
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.FilterType;
@@ -15,7 +15,7 @@ public class PercentChangeFromYearLowFilter extends Filter {
     private transient BigDecimal percentChangeFromYearLow;
 
     public PercentChangeFromYearLowFilter(BigDecimal percentChangeFromYearLow) {
-        super(FilterType.PERCENT_CHANGE_FROM_YEAR_LOW.toString(), percentChangeFromYearLow.toString());
+        super(FilterType.PERCENT_CHANGE_FROM_YEAR_LOW, percentChangeFromYearLow.toString());
         this.percentChangeFromYearLow = percentChangeFromYearLow;
     }
 

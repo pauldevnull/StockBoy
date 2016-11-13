@@ -12,7 +12,7 @@ public class Result implements Serializable {
 
     @SerializedName("executionTime") private long executionTime;
     @SerializedName("resultSize") private int resultSize;
-    @SerializedName("filters") private Set<Filter> filters;
+    @SerializedName("type") private Set<Filter> filters;
     @SerializedName("stocks") private Set<Stock> stocks;
 
     public Result() {
@@ -49,7 +49,7 @@ public class Result implements Serializable {
         return "results [\n" +
                "\texecutionTime: " + executionTime +
                "\tresultSize: " + resultSize +
-               "\tfilters: " + Arrays.deepToString(filters.toArray()) +
+               "\ttype: " + Arrays.deepToString(filters.toArray()) +
                "\tstocks: " + Arrays.deepToString(stocks.toArray()) +
                "]";
     }

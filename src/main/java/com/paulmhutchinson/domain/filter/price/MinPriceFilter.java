@@ -1,4 +1,4 @@
-package com.paulmhutchinson.domain.filter.filters.price;
+package com.paulmhutchinson.domain.filter.price;
 
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.FilterType;
@@ -14,7 +14,7 @@ public class MinPriceFilter extends Filter {
     private transient BigDecimal minPrice;
 
     public MinPriceFilter(BigDecimal minPrice) {
-        super(FilterType.MIN_PRICE.toString(), minPrice.toString());
+        super(FilterType.MIN_PRICE, minPrice.toString());
         this.minPrice = minPrice;
     }
 
