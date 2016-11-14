@@ -9,7 +9,8 @@ public enum Exchange {
 
     NASDAQ("^IXIC", "nasdaq_symbols.csv"),
     SP("^GSPC", "sp_symbols.csv"),
-    DOW("^DJI", "dow_symbols.csv");
+    DOW("^DJI", "dow_symbols.csv"),
+    WATCHLIST("WATCHLIST", "watchlist.csv");
 
     private String exchange;
     private String filename;

@@ -1,11 +1,14 @@
 package com.paulmhutchinson.util.filewriter;
 
+import org.joda.time.DateTime;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-public class InputStreamUtils {
+public class InputStreamUtil {
+
+    public static final String FILENAME = "output/" + DateTime.now().toString() + ".txt";
 
     public static InputStream getClassPathInputStream(String path) {
         try {

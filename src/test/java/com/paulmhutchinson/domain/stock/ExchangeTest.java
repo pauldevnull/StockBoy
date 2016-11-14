@@ -16,7 +16,7 @@ public class ExchangeTest {
     private static final Exchange DEFAULT_EXCHANGE = Exchange.DOW;
     private static final String DEFAULT_EXCHANGE_VALUE = "^DJI";
     private static final String DEFAULT_EXCHANGE_FILENAME = "dow_symbols.csv";
-    private static final Set<String> DEFAULT_EXCHANGE_VALUES = new LinkedHashSet<>(Arrays.asList("^GSPC", "^IXIC", "^DJI"));
+    private static final Set<String> DEFAULT_EXCHANGE_VALUES = new LinkedHashSet<>(Arrays.asList("WATCHLIST", "^GSPC", "^IXIC", "^DJI"));
 
     @Test
     public void getExchange_withExchange_expectCorrectExchange() {

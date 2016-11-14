@@ -4,7 +4,7 @@ public enum Status {
 
     STARTING("\t\t\tStarting..."),
     READING_SYMBOLS("\t\t\t\tReading symbol list..."),
-    RETRIEVING_STOCKS("\t\t\tRetrieving stocks..."),
+    RETRIEVING_STOCKS("\t\t\t\tRetrieving stocks..."),
     RETRIEVING_RESULT("\t\tRetrieving result..."),
     FILTERING_STOCKS("\t\t\tFiltering stocks..."),
     APPLYING_FILTER("\t\t\t\t\t\tApplying {} filter with value(s) {}..."),

@@ -1,15 +1,14 @@
 package com.paulmhutchinson.domain.result;
 
 import com.paulmhutchinson.domain.filter.Filter;
-import org.joda.time.DateTime;
 import yahoofinance.Stock;
 
 import java.util.Set;
 
 public class ResultBuilder {
 
-    private DateTime startTimestamp;
-    private DateTime stopTimestamp;
+    private String startTimestamp;
+    private String stopTimestamp;
     private long executionTime;
     private int resultSize;
     private Set<Filter> filters;
@@ -19,12 +18,12 @@ public class ResultBuilder {
         return new ResultBuilder();
     }
 
-    public ResultBuilder setStartTimestamp(DateTime startTimestamp) {
+    public ResultBuilder setStartTimestamp(String startTimestamp) {
         this.startTimestamp = startTimestamp;
         return this;
     }
 
-    public ResultBuilder setStopTimestamp(DateTime stopTimestamp) {
+    public ResultBuilder setStopTimestamp(String stopTimestamp) {
         this.stopTimestamp = stopTimestamp;
         return this;
     }

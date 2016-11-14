@@ -2,7 +2,6 @@ package com.paulmhutchinson.domain.result;
 
 import com.google.gson.annotations.SerializedName;
 import com.paulmhutchinson.domain.filter.Filter;
-import org.joda.time.DateTime;
 import yahoofinance.Stock;
 
 import java.io.Serializable;
@@ -11,15 +10,15 @@ import java.util.Set;
 
 public class Result implements Serializable {
 
-    @SerializedName("startTimestamp") private DateTime startTimestamp;
-    @SerializedName("stopTimestamp") private DateTime stopTimestamp;
+    @SerializedName("startTimestamp") private String startTimestamp;
+    @SerializedName("stopTimestamp") private String stopTimestamp;
     @SerializedName("executionTime") private long executionTime;
     @SerializedName("resultSize") private int resultSize;
-    @SerializedName("type") private Set<Filter> filters;
+    @SerializedName("filters") private Set<Filter> filters;
     @SerializedName("stocks") private Set<Stock> stocks;
 
-    public Result(final DateTime startTimestamp,
-                  final DateTime stopTimestamp,
+    public Result(final String startTimestamp,
+                  final String stopTimestamp,
                   final long executionTime,
                   final int resultSize,
                   final Set<Filter> filters,
@@ -35,12 +34,11 @@ public class Result implements Serializable {
     @Override
     public String toString() {
         return "results [\n" +
-               "\tstartTimestamp: " + startTimestamp +
-               "\tstopTimestamp: " + stopTimestamp +
-               "\texecutionTime: " + executionTime +
-               "\tresultSize: " + resultSize +
-               "\ttype: " + Arrays.deepToString(filters.toArray()) +
-               "\tstocks: " + Arrays.deepToString(stocks.toArray()) +
-               "]";
+               //"\tstartTimestamp: " + startTimestamp +
+               //"\tstopTimestamp: " + stopTimestamp +
+               //"\texecutionTime: " + executionTime +
+               "resultSize: " + resultSize + "\n" +
+               "filters: " + Arrays.deepToString(filters.toArray()) + "\n" +
+               "stocks: " + Arrays.deepToString(stocks.toArray()) + "\n]";
     }
 }

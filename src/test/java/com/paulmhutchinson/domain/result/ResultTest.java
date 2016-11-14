@@ -13,10 +13,10 @@ public class ResultTest {
 
     @Test
     public void toString_withResult_expectCorrectString() {
-        String correctResultString = ResultFactory.buildDefaultResultString();
+        String expectedResultString = ResultFactory.buildDefaultResultString();
 
-        String resultString = DEFAULT_RESULT.toString();
+        String actualResultString = DEFAULT_RESULT.toString();
 
-        assertEquals(correctResultString, resultString);
+        assertEquals(expectedResultString.trim(), actualResultString);
     }
 }

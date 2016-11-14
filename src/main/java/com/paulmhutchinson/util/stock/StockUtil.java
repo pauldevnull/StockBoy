@@ -2,7 +2,7 @@ package com.paulmhutchinson.util.stock;
 
 import com.paulmhutchinson.domain.status.Status;
 import com.paulmhutchinson.domain.stock.Exchange;
-import com.paulmhutchinson.util.filewriter.InputStreamUtils;
+import com.paulmhutchinson.util.filewriter.InputStreamUtil;
 import org.apache.commons.csv.CSVFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,15 +17,16 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-public class StockUtils {
+public class StockUtil {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StockUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(StockUtil.class);
     private static final String CSV_COLUMN = "symbol";
     private static final CSVFormat CSV_FORMAT = CSVFormat.EXCEL.withFirstRecordAsHeader().withIgnoreHeaderCase();
+    private static final Set<String> SYMBOLS = getSymbolsForExchange(Exchange.WATCHLIST);
 
-    private static final Set<String> SYMBOLS = getSymbolsForExchange(Exchange.NASDAQ);
+    public static final Set<Stock> STOCKS = getStocks();
 
-    public static Set<Stock> getStocks() {
+    private static Set<Stock> getStocks() {
         try {
             LOGGER.info(Status.RETRIEVING_STOCKS.getMessage());
             return new HashSet<>(YahooFinance.get(SYMBOLS.toArray(new String[SYMBOLS.size()])).values());
@@ -53,6 +54,6 @@ public class StockUtils {
     }
 
     private static InputStream getInputStream(String path) {
-        return InputStreamUtils.getClassPathInputStream(path);
+        return InputStreamUtil.getClassPathInputStream(path);
     }
 }

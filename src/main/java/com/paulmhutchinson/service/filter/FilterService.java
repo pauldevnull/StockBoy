@@ -15,25 +15,22 @@ public class FilterService {
     private Set<Stock> stocks;
     private Set<Filter> filters;
 
-    public FilterService(final Set<Stock> stocks, final Set<Filter> filters) {
+    public FilterService(final Set<Stock> stocks,
+                         final Set<Filter> filters) {
         this.stocks = stocks;
         this.filters = filters;
     }
 
     public void filter() {
-        try {
-            LOGGER.info(Status.FILTERING_STOCKS.getMessage());
-            filters.forEach(f -> f.apply(stocks));
-        } catch (Exception e) {
-            LOGGER.error(Status.ERROR_FILTERING_STOCKS.getMessage());
-        }
+        LOGGER.info(Status.FILTERING_STOCKS.getMessage());
+        filters.forEach(f -> f.apply(stocks));
     }
 
     public Set<Stock> getStocks() {
         return stocks;
     }
 
-    public void setStocks(Set<Stock> stocks) {
-        this.stocks = stocks;
+    public Set<Filter> getFilters() {
+        return filters;
     }
 }
