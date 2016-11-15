@@ -1,6 +1,5 @@
 package com.paulmhutchinson.util.filter;
 
-import com.google.gson.annotations.SerializedName;
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.percentchange.PercentChangeFromYearLowFilter;
 import com.paulmhutchinson.domain.filter.price.MaxPriceFilter;
@@ -11,9 +10,12 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class FilterUtil {
+public final class FilterUtil {
 
-    @SerializedName("type")
+    private FilterUtil() {
+        throw new AssertionError();
+    }
+
     public static final Set<Filter> FILTERS = new HashSet<Filter>(Arrays.asList(
             //new CurrencyFilter(new HashSet<>(Arrays.asList(Currency.values()))),
             //new ExchangeFilter(Exchange.getExchanges()),

@@ -6,9 +6,13 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class InputStreamUtil {
+public final class FileWriterUtil {
 
     public static final String FILENAME = "output/" + DateTime.now().toString() + ".txt";
+
+    private FileWriterUtil() {
+        throw new AssertionError();
+    }
 
     public static InputStream getClassPathInputStream(String path) {
         try {

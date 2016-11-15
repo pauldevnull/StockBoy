@@ -5,7 +5,6 @@ import com.paulmhutchinson.domain.result.ResultFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.File;
@@ -18,7 +17,6 @@ public class FileWriterServiceTest {
     private static final String FILENAME = "TEST.txt";
     private static final Result RESULT = ResultFactory.buildDefaultResult();
 
-    @Mock
     private FileWriterService fileWriterService;
 
     @Before
