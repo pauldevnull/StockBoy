@@ -1,0 +1,20 @@
+{
+  "filters": [
+    {
+      "filterType": "MAX_PRICE",
+      "filterValue": "5.00"
+    }
+  ],
+  "recognizers": [
+    {
+      "recognizerType": "HIGH_AND_TIGHT_FLAG"
+    }
+  ],
+  "symbols": [
+    "DRYS",
+    "WGBS",
+    "KTOVW",
+    "AXARW",
+    "NVCN"
+  ]
+}

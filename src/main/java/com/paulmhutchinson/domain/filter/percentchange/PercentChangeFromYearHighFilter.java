@@ -18,7 +18,7 @@ public class PercentChangeFromYearHighFilter extends Filter {
     }
 
     @Override
-    public void apply(Set<Stock> stocks) {
+    public void filter(Set<Stock> stocks) {
         printStatusToLogger();
         CollectionUtils.filter(stocks, stock -> isWithinPercentOfYearHigh(stock.getQuote().getChangeFromYearHighInPercent()));
     }

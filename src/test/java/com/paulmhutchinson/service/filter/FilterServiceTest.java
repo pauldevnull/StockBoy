@@ -43,14 +43,14 @@ public class FilterServiceTest {
                 new MinPriceFilter(MIN_PRICE),
                 new MaxPriceFilter(MAX_PRICE)
         ));
-        filterService = new FilterService(stocks, filters);
+        filterService = new FilterService(filters);
     }
 
     @Test
     public void getFilteredStocks_withAllFilters_expectOnlyStocksWithinConstraints() {
         Set<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
 
-        filterService.filter();
+        filterService.filter(stocks);
 
         assertTrue(stocks.equals(validStocks));
     }

@@ -33,7 +33,7 @@ public class CurrencyFilterTest {
     public void apply_WithListOfStocks_ExpectOnlyStocksWithValidCurrencies() {
         Set<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
 
-        currencyFilter.apply(stocks);
+        currencyFilter.filter(stocks);
 
         assertTrue(stocks.equals(validStocks));
     }

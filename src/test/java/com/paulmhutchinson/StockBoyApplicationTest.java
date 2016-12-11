@@ -1,8 +1,6 @@
 package com.paulmhutchinson;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 
 import java.io.File;
@@ -12,15 +10,26 @@ import java.lang.reflect.InvocationTargetException;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-@RunWith(MockitoJUnitRunner.class)
 @SpringApplicationConfiguration(classes = StockBoyApplication.class)
 public class StockBoyApplicationTest {
 
     @Test
-    public void main_asdf() throws Exception {
+    public void main_withNoParameters_expectApplicationExecutesAndOutputFileIsDeleted() throws Exception {
         StockBoyApplication stockBoyApplication = new StockBoyApplication();
 
         StockBoyApplication.main(new String[0]);
+
+        assertNotNull(stockBoyApplication);
+        assertTrue(getLatestOutputFile().delete());
+    }
+
+    @Test
+    public void main_withParameters_expectApplicationExecutesAndOutputFileIsDeleted() throws Exception {
+        StockBoyApplication stockBoyApplication = new StockBoyApplication();
+        String[] input = new String[1];
+        input[0] = "src/test/resources/input/test_input.json";
+
+        StockBoyApplication.main(input);
 
         assertNotNull(stockBoyApplication);
         assertTrue(getLatestOutputFile().delete());

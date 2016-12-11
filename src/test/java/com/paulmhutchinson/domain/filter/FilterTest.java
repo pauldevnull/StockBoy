@@ -18,7 +18,7 @@ public class FilterTest {
 
     @Test
     public void toString_WithFilter_ExpectCorrectString() {
-        String correctCurrencyFilterString = "filterType:" + FilterType.CURRENCY + ",\n" + "filterValue: " + CURRENCY_FILTER.getCurrencies();
+        String correctCurrencyFilterString = "Filter{filterType=" + FilterType.CURRENCY + ", filterValue='" + CURRENCY_FILTER.getCurrencies() + "'}";
 
         String currencyFilterString = CURRENCY_FILTER.toString();
 

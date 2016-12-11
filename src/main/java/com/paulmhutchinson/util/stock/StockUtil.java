@@ -27,16 +27,14 @@ public final class StockUtil {
         throw new AssertionError();
     }
 
+    public static Set<Stock> getStocksForSymbols(Set<String> symbols) {
+        LOGGER.info(Status.RETRIEVING_STOCKS.getMessage());
+        return new HashSet<>(YahooFinance.get(symbols.toArray(new String[symbols.size()])).values());
+    }
+
     public static Set<Stock> getStocksForExchange(Exchange exchange) throws IOException {
-        Set<String> symbols;
-        try {
-            LOGGER.info(Status.RETRIEVING_STOCKS.getMessage());
-            symbols = getSymbolsForExchange(exchange.getFilename());
-            return new HashSet<>(YahooFinance.get(symbols.toArray(new String[symbols.size()])).values());
-        } catch (IOException e) {
-            LOGGER.error(Status.ERROR_RETRIEVING_STOCKS.getMessage());
-            throw new IOException();
-        }
+        Set<String> symbols = getSymbolsForExchange(exchange.getFilename());
+        return getStocksForSymbols(symbols);
     }
 
     private static Set<String> getSymbolsForExchange(String exchange) throws IOException {

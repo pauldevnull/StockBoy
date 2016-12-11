@@ -1,6 +1,7 @@
 package com.paulmhutchinson.domain.result;
 
 import com.paulmhutchinson.domain.filter.Filter;
+import com.paulmhutchinson.domain.recognizer.Recognizer;
 import yahoofinance.Stock;
 
 import java.util.Set;
@@ -12,6 +13,8 @@ public class ResultBuilder {
     private long executionTime;
     private int resultSize;
     private Set<Filter> filters;
+    private Set<Recognizer> recognizers;
+    private Set<String> summary;
     private Set<Stock> stocks;
 
     public static ResultBuilder aResult() {
@@ -43,12 +46,22 @@ public class ResultBuilder {
         return this;
     }
 
+    public ResultBuilder setRecognizers(Set<Recognizer> recognizers) {
+        this.recognizers = recognizers;
+        return this;
+    }
+
+    public ResultBuilder setSummary(Set<String> summary) {
+        this.summary = summary;
+        return this;
+    }
+
     public ResultBuilder setStocks(Set<Stock> stocks) {
         this.stocks = stocks;
         return this;
     }
 
     public Result build() {
-        return new Result(startTimestamp, stopTimestamp, executionTime, resultSize, filters, stocks);
+        return new Result(startTimestamp, stopTimestamp, executionTime, resultSize, filters, recognizers, summary, stocks);
     }
 }

@@ -32,7 +32,7 @@ public class ExchangeFilterTest {
     public void apply_WithListOfStocksAndExchanges_ExpectOnlyStocksWithValidExchanges() {
         Set<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
 
-        exchangeFilter.apply(stocks);
+        exchangeFilter.filter(stocks);
 
         assertTrue(stocks.equals(validStocks));
     }

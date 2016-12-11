@@ -8,6 +8,8 @@ public enum Status {
     RETRIEVING_RESULT("\t\tRetrieving result..."),
     FILTERING_STOCKS("\t\t\tFiltering stocks..."),
     APPLYING_FILTER("\t\t\t\t\t\tApplying {} filter with value(s) {}..."),
+    RECOGNIZING_STOCKS("\t\t\tRecognizing stocks..."),
+    RECOGNIZING_PATTERN("\t\t\t\t\tRecognizing {} pattern..."),
     WRITING("\t\tWriting to file..."),
     ERROR_READING_SYMBOLS("\t\tError reading symbol list"),
     ERROR_RETRIEVING_STOCKS("\t\tError retrieving stocks"),

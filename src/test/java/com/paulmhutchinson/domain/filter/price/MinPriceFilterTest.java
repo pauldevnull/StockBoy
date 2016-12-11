@@ -32,7 +32,7 @@ public class MinPriceFilterTest {
     public void apply_WithListOfStocksAndMinPrice_ExpectOnlyStocksWithPriceEqualToOrGreaterThanMinPrice() {
         Set<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
 
-        minPriceFilter.apply(stocks);
+        minPriceFilter.filter(stocks);
 
         assertTrue(stocks.equals(validStocks));
     }

@@ -12,22 +12,17 @@ public class FilterService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FilterService.class);
 
-    private Set<Stock> stocks;
     private Set<Filter> filters;
 
-    public FilterService(final Set<Stock> stocks,
-                         final Set<Filter> filters) {
-        this.stocks = stocks;
+    public FilterService(final Set<Filter> filters) {
         this.filters = filters;
     }
 
-    public void filter() {
-        LOGGER.info(Status.FILTERING_STOCKS.getMessage());
-        filters.forEach(f -> f.apply(stocks));
-    }
-
-    public Set<Stock> getStocks() {
-        return stocks;
+    public void filter(Set<Stock> stocks) {
+        if (!filters.isEmpty()) {
+            LOGGER.info(Status.FILTERING_STOCKS.getMessage());
+            filters.forEach(f -> f.filter(stocks));
+        }
     }
 
     public Set<Filter> getFilters() {

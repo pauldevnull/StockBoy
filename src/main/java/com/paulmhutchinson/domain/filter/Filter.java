@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import yahoofinance.Stock;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Set;
 
 public abstract class Filter implements Serializable {
@@ -16,20 +17,28 @@ public abstract class Filter implements Serializable {
     @SerializedName("filterType") private FilterType filterType;
     @SerializedName("filterValue") private String filterValue;
 
+    protected Filter() {
+        filterType = FilterType.MAX_PRICE;
+        filterValue = new BigDecimal(5).toString();
+    }
+
     protected Filter(FilterType filterType, String filterValue) {
         this.filterType = filterType;
         this.filterValue = filterValue;
     }
 
-    public abstract void apply(final Set<Stock> stocks);
+    public abstract void filter(final Set<Stock> stocks);
 
     protected void printStatusToLogger() {
         LOGGER.info(Status.APPLYING_FILTER.getMessage(), filterType, filterValue);
     }
 
+
     @Override
     public String toString() {
-        return "filterType:" + filterType + ",\n" +
-               "filterValue: " + filterValue;
+        return "Filter{" +
+                "filterType=" + filterType +
+                ", filterValue='" + filterValue + '\'' +
+                '}';
     }
 }

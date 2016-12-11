@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public enum Exchange {
 
     NASDAQ("^IXIC", "nasdaq_symbols.csv"),
+    NASDAQ_PENNY("^IXIC", "nasdaq_penny_symbols.csv"),
     SP("^GSPC", "sp_symbols.csv"),
     DOW("^DJI", "dow_symbols.csv"),
     WATCHLIST("WATCHLIST", "watchlist.csv");

@@ -17,7 +17,7 @@ public class ExchangeFilter extends Filter {
     }
 
     @Override
-    public void apply(Set<Stock> stocks) {
+    public void filter(Set<Stock> stocks) {
         printStatusToLogger();
         CollectionUtils.filter(stocks, stock -> isValidExchange(stock.getStockExchange()));
     }

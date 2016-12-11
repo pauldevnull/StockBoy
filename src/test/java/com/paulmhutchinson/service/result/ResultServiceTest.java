@@ -5,10 +5,14 @@ import com.paulmhutchinson.domain.result.Result;
 import com.paulmhutchinson.domain.result.ResultFactory;
 import com.paulmhutchinson.domain.stock.StockFactory;
 import com.paulmhutchinson.service.filter.FilterService;
+import com.paulmhutchinson.service.recognizer.RecognizerService;
+import org.apache.commons.collections4.SetUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -21,13 +25,14 @@ public class ResultServiceTest {
 
     @Before
     public void init() {
-        FilterService filterService = new FilterService(StockFactory.buildDefaultStocks(), FilterFactory.buildDefaultFilters());
-        resultService = new ResultService(filterService);
+        FilterService filterService = new FilterService(FilterFactory.buildDefaultFilters());
+        RecognizerService recognizerService = new RecognizerService(SetUtils.emptySet());//RecognizerFactory.buildDefaultRecognizers());
+        resultService = new ResultService(filterService, recognizerService);
     }
 
     @Test
-    public void getResult_withDefaultValues_expectCorrectResult() {
-        Result result = resultService.getResult();
+    public void getResult_withDefaultValues_expectCorrectResult() throws IOException {
+        Result result = resultService.getResult(StockFactory.buildDefaultStocks());
 
         assertEquals(RESULT.toString(), result.toString());
     }

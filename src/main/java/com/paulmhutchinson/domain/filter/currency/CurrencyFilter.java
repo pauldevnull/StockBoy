@@ -8,7 +8,7 @@ import yahoofinance.Stock;
 
 import java.util.Set;
 
-public class CurrencyFilter extends Filter {
+public class CurrencyFilter extends Filter {// implements Filterable {
 
     private transient Set<Currency> currencies;
 
@@ -18,7 +18,7 @@ public class CurrencyFilter extends Filter {
     }
 
     @Override
-    public void apply(Set<Stock> stocks) {
+    public void filter(Set<Stock> stocks) {
         printStatusToLogger();
         CollectionUtils.filter(stocks, stock -> isValidCurrency(stock.getCurrency()));
     }

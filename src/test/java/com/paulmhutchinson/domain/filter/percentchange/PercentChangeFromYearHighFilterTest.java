@@ -32,7 +32,7 @@ public class PercentChangeFromYearHighFilterTest {
     public void apply_WithListOfStocksAndMaxPrice_ExpectOnlyStocksWithPriceEqualToOrLessThanMaxPrice() {
         Set<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
 
-        percentChangeFromYearHighFilter.apply(stocks);
+        percentChangeFromYearHighFilter.filter(stocks);
 
         assertTrue(stocks.equals(validStocks));
     }
