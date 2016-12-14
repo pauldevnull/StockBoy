@@ -28,17 +28,26 @@ public final class StockUtil {
     }
 
     public static Set<Stock> getStocksForSymbols(Set<String> symbols) {
-        LOGGER.info(Status.RETRIEVING_STOCKS.getMessage());
-        return new HashSet<>(YahooFinance.get(symbols.toArray(new String[symbols.size()])).values());
+        if (!symbols.isEmpty()) {
+            LOGGER.info(Status.RETRIEVING_STOCKS.getMessage());
+            return new HashSet<>(YahooFinance.get(symbols.toArray(new String[symbols.size()])).values());
+        } else {
+            return new HashSet<>();
+        }
     }
 
     public static Set<Stock> getStocksForExchange(Exchange exchange) throws IOException {
-        Set<String> symbols = getSymbolsForExchange(exchange.getFilename());
+        Set<String> symbols = getSymbolsFromFile(exchange.getFilename());
         return getStocksForSymbols(symbols);
     }
 
-    private static Set<String> getSymbolsForExchange(String exchange) throws IOException {
-        InputStream inputStream = getInputStream(exchange);
+    public static Set<Stock> getStocksFromFile(String filename) throws IOException {
+        Set<String> symbols = getSymbolsFromFile(filename);
+        return getStocksForSymbols(symbols);
+    }
+
+    public static Set<String> getSymbolsFromFile(String filename) throws IOException {
+        InputStream inputStream = getInputStream(filename);
         InputStreamReader reader = new InputStreamReader(inputStream);
         LOGGER.info(Status.READING_SYMBOLS.getMessage());
         return StreamSupport.stream(CSV_FORMAT.parse(reader).spliterator(), false)

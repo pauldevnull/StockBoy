@@ -2,7 +2,11 @@
   "filters": [
     {
       "filterType": "MAX_PRICE",
-      "filterValue": "5.00"
+      "filterValue": "2.00"
+    },
+    {
+      "filterType": "PERCENT_CHANGE_FROM_YEAR_LOW",
+      "filterValue": "25.00"
     }
   ],
   "recognizers": [
@@ -10,11 +14,6 @@
       "recognizerType": "HIGH_AND_TIGHT_FLAG"
     }
   ],
-  "symbols": [
-    "DRYS",
-    "WGBS",
-    "KTOVW",
-    "AXARW",
-    "NVCN"
-  ]
+  "symbols": [],
+  "symbolFile": "watchlist.csv"
 }

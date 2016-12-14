@@ -11,14 +11,16 @@ public class StockInput {
     @SerializedName("filters") private Set<Filter> filters;
     @SerializedName("recognizers") private Set<Recognizer> recognizers;
     @SerializedName("symbols") private Set<String> symbols;
+    @SerializedName("symbolFile") private String symbolFile;
 
     public StockInput() {
     }
 
-    public StockInput(Set<Filter> filters, Set<Recognizer> recognizers, Set<String> symbols) {
+    public StockInput(Set<Filter> filters, Set<Recognizer> recognizers, Set<String> symbols, String symbolFile) {
         this.filters = filters;
         this.recognizers = recognizers;
         this.symbols = symbols;
+        this.symbolFile = symbolFile;
     }
 
     public Set<Filter> getFilters() {
@@ -43,5 +45,13 @@ public class StockInput {
 
     public void setSymbols(Set<String> symbols) {
         this.symbols = symbols;
+    }
+
+    public String getSymbolFile() {
+        return symbolFile;
+    }
+
+    public void setSymbolFile(String symbolFile) {
+        this.symbolFile = symbolFile;
     }
 }
