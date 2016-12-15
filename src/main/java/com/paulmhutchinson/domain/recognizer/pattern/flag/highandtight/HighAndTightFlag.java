@@ -8,6 +8,7 @@ import com.paulmhutchinson.domain.status.Status;
 import com.paulmhutchinson.domain.stock.VolumeTrend;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 import yahoofinance.histquotes.HistoricalQuote;
 
@@ -40,6 +41,8 @@ Receding volume trend (performance indicator...not identification guide
 The volume trend in the flag should be receding for best
 performance.
  */
+
+@Component
 public class HighAndTightFlag implements Flag, Serializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HighAndTightFlag.class);

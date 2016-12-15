@@ -2,3 +2,6 @@ logging:
   level:
     org.springframework: OFF
     org.apache: OFF
+
+input:
+  file: input/input.json

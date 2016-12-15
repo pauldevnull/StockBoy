@@ -4,18 +4,24 @@ import com.google.gson.annotations.SerializedName;
 import com.paulmhutchinson.domain.status.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Set;
 
+@Component
 public abstract class Filter implements Serializable {
 
     private static transient final Logger LOGGER = LoggerFactory.getLogger(Filter.class);
 
-    @SerializedName("filterType") private FilterType filterType;
-    @SerializedName("filterValue") private String filterValue;
+    @SerializedName("filterType")
+    private FilterType filterType;
+
+    @SerializedName("filterValue")
+    private String filterValue;
 
     protected Filter() {
         filterType = FilterType.MAX_PRICE;
@@ -27,7 +33,8 @@ public abstract class Filter implements Serializable {
         this.filterValue = filterValue;
     }
 
-    public abstract void filter(final Set<Stock> stocks);
+    @Autowired
+    public abstract void filter(Set<Stock> stocks);
 
     protected void printStatusToLogger() {
         LOGGER.info(Status.APPLYING_FILTER.getMessage(), filterType, filterValue);

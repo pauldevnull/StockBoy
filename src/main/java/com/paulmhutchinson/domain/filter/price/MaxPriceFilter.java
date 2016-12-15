@@ -1,14 +1,15 @@
 package com.paulmhutchinson.domain.filter.price;
 
-import com.google.gson.annotations.SerializedName;
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.FilterType;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
 import java.math.BigDecimal;
 import java.util.Set;
 
+@Component
 public class MaxPriceFilter extends Filter {
 
     private transient BigDecimal maxPrice;

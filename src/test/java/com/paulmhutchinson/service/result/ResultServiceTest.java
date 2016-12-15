@@ -32,7 +32,7 @@ public class ResultServiceTest {
 
     @Test
     public void getResult_withDefaultValues_expectCorrectResult() throws IOException {
-        Result result = resultService.getResult(StockFactory.buildDefaultStocks());
+        Result result = resultService.getResultFromSymbols(StockFactory.SYMBOLS);
 
         assertEquals(RESULT.toString(), result.toString());
     }
