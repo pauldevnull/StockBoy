@@ -9,14 +9,12 @@ import yahoofinance.Stock;
 import java.math.BigDecimal;
 import java.util.Set;
 
-@Component
+@Component("MaxPriceFilter")
 public class MaxPriceFilter extends Filter {
 
     private transient BigDecimal maxPrice;
 
-    public MaxPriceFilter() {
-        super(FilterType.MAX_PRICE, "5.0");
-    }
+    public MaxPriceFilter() {}
 
     public MaxPriceFilter(BigDecimal maxPrice) {
         super(FilterType.MAX_PRICE, maxPrice.toString());

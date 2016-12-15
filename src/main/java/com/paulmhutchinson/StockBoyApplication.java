@@ -49,7 +49,6 @@ public class StockBoyApplication implements CommandLineRunner {
     @Override
     public void run(String[] args) throws Exception {
         fileWriterService.write(resultService.getResultFromSymbols(symbols));
-        LOGGER.info(Status.FINISHED.getMessage());
     }
 
     public static void main(String[] args) {

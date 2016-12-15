@@ -3,6 +3,7 @@ package com.paulmhutchinson.domain.filter;
 import com.google.gson.*;
 import com.paulmhutchinson.domain.filter.percentchange.PercentChangeFromYearLowFilter;
 import com.paulmhutchinson.domain.filter.price.MaxPriceFilter;
+import com.paulmhutchinson.domain.filter.spread.minimum.temporal.MinDailySpreadFilter;
 
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
@@ -19,7 +20,9 @@ public class FilterAdapter implements JsonDeserializer<Filter> {
             return new MaxPriceFilter(new BigDecimal(filterValue.getAsDouble()));
         } else if (filterType == FilterType.PERCENT_CHANGE_FROM_YEAR_LOW) {
             return new PercentChangeFromYearLowFilter(new BigDecimal(filterValue.getAsDouble()));
-        } else {
+        } else if (filterType == FilterType.MIN_DAILY_SPREAD) {
+            return new MinDailySpreadFilter(new BigDecimal(filterValue.getAsDouble()));
+        }  else {
             return null;
         }
     }

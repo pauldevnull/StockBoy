@@ -7,6 +7,10 @@
     {
       "filterType": "PERCENT_CHANGE_FROM_YEAR_LOW",
       "filterValue": "25.00"
+    },
+    {
+      "filterType": "MIN_DAILY_SPREAD",
+      "filterValue": "0.10"
     }
   ],
   "recognizers": [
@@ -15,5 +19,5 @@
     }
   ],
   "symbols": [],
-  "symbolFile": "watchlist.csv"
+  "symbolFile": "nasdaq_penny_symbols.csv"
 }

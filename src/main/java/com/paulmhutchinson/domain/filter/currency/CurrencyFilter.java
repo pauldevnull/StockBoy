@@ -4,13 +4,17 @@ import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.FilterType;
 import com.paulmhutchinson.domain.stock.Currency;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
 import java.util.Set;
 
-public class CurrencyFilter extends Filter {// implements Filterable {
+@Component("CurrencyFilter")
+public class CurrencyFilter extends Filter {
 
     private transient Set<Currency> currencies;
+
+    public CurrencyFilter() {}
 
     public CurrencyFilter(Set<Currency> currencies) {
         super(FilterType.CURRENCY, currencies.toString());
@@ -24,7 +28,7 @@ public class CurrencyFilter extends Filter {// implements Filterable {
     }
 
     private boolean isValidCurrency(final String currency) {
-        return currencies.stream().filter(c -> c.toString().equals(currency)).count() > 0;
+        return currencies.contains(Currency.valueOf(currency));
     }
 
     public Set<Currency> getCurrencies() {

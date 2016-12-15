@@ -48,7 +48,7 @@ public class HighAndTightFlag implements Flag, Serializable {
     private static final Logger LOGGER = LoggerFactory.getLogger(HighAndTightFlag.class);
 
     private RecognizerType recognizerType;
-    private Map<MarketType, PatternData> patternData;
+    private transient Map<MarketType, PatternData> patternData;
 
     public HighAndTightFlag() {
         this.recognizerType = RecognizerType.HIGH_AND_TIGHT_FLAG;

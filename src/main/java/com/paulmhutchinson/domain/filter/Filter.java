@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Set;
 
 @Component
@@ -23,10 +22,7 @@ public abstract class Filter implements Serializable {
     @SerializedName("filterValue")
     private String filterValue;
 
-    protected Filter() {
-        filterType = FilterType.MAX_PRICE;
-        filterValue = new BigDecimal(5).toString();
-    }
+    protected Filter() {}
 
     protected Filter(FilterType filterType, String filterValue) {
         this.filterType = filterType;
