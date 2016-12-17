@@ -14,12 +14,12 @@ public class StockInput {
     @SerializedName("sorters") private Set<Sorter> sorters;
     @SerializedName("symbols") private Set<String> symbols;
     @SerializedName("symbolFile") private String symbolFile;
-    @SerializedName("output") private boolean output;
+    @SerializedName("output") private Boolean output;
 
     public StockInput() {
     }
 
-    public StockInput(Set<Filter> filters, Set<Recognizer> recognizers, Set<Sorter> sorters, Set<String> symbols, String symbolFile, boolean output) {
+    public StockInput(Set<Filter> filters, Set<Recognizer> recognizers, Set<Sorter> sorters, Set<String> symbols, String symbolFile, Boolean output) {
         this.filters = filters;
         this.recognizers = recognizers;
         this.sorters = sorters;
@@ -68,11 +68,11 @@ public class StockInput {
         this.symbolFile = symbolFile;
     }
 
-    public boolean isOutput() {
+    public Boolean isOutput() {
         return output;
     }
 
-    public void setOutput(boolean output) {
+    public void setOutput(Boolean output) {
         this.output = output;
     }
 }

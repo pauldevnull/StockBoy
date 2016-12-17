@@ -17,7 +17,7 @@ import java.util.logging.Level;
 public class StockBoyApplication implements CommandLineRunner {
 
     @Resource
-    private boolean output;
+    private Boolean output;
 
     @Resource
     private Set<String> symbols;

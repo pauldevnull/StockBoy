@@ -21,8 +21,8 @@
   ],
   "sorters": [
     {
-      "sortType": "CURRENT_PRICE",
-      "sortOrder": "ASCENDING"
+      "sorterType": "CURRENT_PRICE",
+      "sorterOrder": "ASCENDING"
     }
   ],
   "symbols": [],

@@ -11,11 +11,11 @@ public class SorterAdapter implements JsonDeserializer<Sorter> {
     @Override
     public Sorter deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject =  json.getAsJsonObject();
-        SortType sortType = SortType.valueOf(jsonObject.get("sortType").getAsString());
-        SortOrder sortOrder = SortOrder.valueOf(jsonObject.get("sortOrder").getAsString());
+        SortType sorterType = SortType.valueOf(jsonObject.get("sorterType").getAsString());
+        SortOrder sorterOrder = SortOrder.valueOf(jsonObject.get("sorterOrder").getAsString());
 
-        if (sortType == SortType.CURRENT_PRICE) {
-            return new CurrentPriceSorter(sortOrder);
+        if (sorterType == SortType.CURRENT_PRICE) {
+            return new CurrentPriceSorter(sorterOrder);
         } else {
             return null;
         }

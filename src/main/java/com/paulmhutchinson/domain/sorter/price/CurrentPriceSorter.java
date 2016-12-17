@@ -12,22 +12,22 @@ import java.util.List;
 @Component("CurrentPriceSorter")
 public class CurrentPriceSorter extends Sorter {
 
-    private transient SortOrder sortOrder;
+    private transient SortOrder sorterOrder;
 
     public CurrentPriceSorter() {}
 
-    public CurrentPriceSorter(SortOrder sortOrder) {
-        super(SortType.CURRENT_PRICE, sortOrder);
-        this.sortOrder = sortOrder;
+    public CurrentPriceSorter(SortOrder sorterOrder) {
+        super(SortType.CURRENT_PRICE, sorterOrder);
+        this.sorterOrder = sorterOrder;
     }
 
     @Override
     public void sort(List<Stock> stocks) {
         printStatusToLogger();
-        if (sortOrder == SortOrder.ASCENDING)
+        if (sorterOrder == SortOrder.ASCENDING)
             Collections.sort(stocks, (s1, s2) -> s1.getQuote().getPrice().compareTo(s2.getQuote().getPrice()));
 
-        if (sortOrder == SortOrder.DESCENDING)
+        if (sorterOrder == SortOrder.DESCENDING)
             Collections.sort(stocks, (s1, s2) -> s2.getQuote().getPrice().compareTo(s1.getQuote().getPrice()));
     }
 }

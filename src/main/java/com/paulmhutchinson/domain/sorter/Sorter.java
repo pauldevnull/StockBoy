@@ -17,31 +17,31 @@ public abstract class Sorter implements Serializable {
 
     private static transient final Logger LOGGER = LoggerFactory.getLogger(Sorter.class);
 
-    @SerializedName("sortType")
-    private SortType sortType;
+    @SerializedName("sorterType")
+    private SortType sorterType;
 
-    @SerializedName("sortOrder")
-    private SortOrder sortOrder;
+    @SerializedName("sorterOrder")
+    private SortOrder sorterOrder;
 
     protected Sorter() {}
 
-    protected Sorter(SortType sortType, SortOrder sortOrder) {
-        this.sortType = sortType;
-        this.sortOrder = sortOrder;
+    protected Sorter(SortType sorterType, SortOrder sorterOrder) {
+        this.sorterType = sorterType;
+        this.sorterOrder = sorterOrder;
     }
 
     @Autowired
     public abstract void sort(List<Stock> stocks);
 
     protected void printStatusToLogger() {
-        LOGGER.info(Status.APPLYING_SORTER.getMessage(), sortType, sortOrder);
+        LOGGER.info(Status.APPLYING_SORTER.getMessage(), sorterType, sorterOrder);
     }
 
     @Override
     public String toString() {
         return "Sorter{" +
-                "sortType=" + sortType +
-                ", sortOrder=" + sortOrder +
+                "sorterType=" + sorterType +
+                ", sorterOrder=" + sorterOrder +
                 '}';
     }
 }

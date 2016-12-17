@@ -37,7 +37,7 @@ public class InputConfiguration {
     @Autowired
     @Bean(name = "output")
     @DependsOn("stockInput")
-    public boolean output(StockInput input) {
+    public Boolean output(StockInput input) {
         return input.isOutput();
     }
 
