@@ -7,6 +7,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
+import java.util.List;
 import java.util.Set;
 
 @Component("CurrencyFilter")
@@ -22,7 +23,7 @@ public class CurrencyFilter extends Filter {
     }
 
     @Override
-    public void filter(Set<Stock> stocks) {
+    public void filter(List<Stock> stocks) {
         printStatusToLogger();
         CollectionUtils.filter(stocks, stock -> isValidCurrency(stock.getCurrency()));
     }

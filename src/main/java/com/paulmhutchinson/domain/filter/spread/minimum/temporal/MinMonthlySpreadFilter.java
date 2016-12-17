@@ -8,7 +8,7 @@ import yahoofinance.Stock;
 import yahoofinance.quotes.stock.StockQuote;
 
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
 @Component("MonthlySpreadFilter")
 public class MinMonthlySpreadFilter extends MinSpreadFilter {
@@ -23,7 +23,7 @@ public class MinMonthlySpreadFilter extends MinSpreadFilter {
     }
 
     @Override
-    public void filter(Set<Stock> stocks) {
+    public void filter(List<Stock> stocks) {
         printStatusToLogger();
         CollectionUtils.filter(stocks, stock -> isGreaterThanMinSpread(getSpread(stock)));
     }

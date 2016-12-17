@@ -22,7 +22,7 @@ public class FilterAdapter implements JsonDeserializer<Filter> {
             return new PercentChangeFromYearLowFilter(new BigDecimal(filterValue.getAsDouble()));
         } else if (filterType == FilterType.MIN_DAILY_SPREAD) {
             return new MinDailySpreadFilter(new BigDecimal(filterValue.getAsDouble()));
-        }  else {
+        } else {
             return null;
         }
     }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
 @Component("PercentChangeFromYearHighFilter")
 public class PercentChangeFromYearHighFilter extends Filter {
@@ -22,7 +22,7 @@ public class PercentChangeFromYearHighFilter extends Filter {
     }
 
     @Override
-    public void filter(Set<Stock> stocks) {
+    public void filter(List<Stock> stocks) {
         printStatusToLogger();
         CollectionUtils.filter(stocks, stock -> isWithinPercentOfYearHigh(stock.getQuote().getChangeFromYearHighInPercent()));
     }

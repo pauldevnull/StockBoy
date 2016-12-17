@@ -2,20 +2,22 @@ package com.paulmhutchinson.domain.result;
 
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.recognizer.Recognizer;
+import com.paulmhutchinson.domain.sorter.Sorter;
 import yahoofinance.Stock;
 
+import java.util.List;
 import java.util.Set;
 
 public class ResultBuilder {
 
     private String startTimestamp;
-    private String stopTimestamp;
     private long executionTime;
     private int resultSize;
     private Set<Filter> filters;
     private Set<Recognizer> recognizers;
-    private Set<String> summary;
-    private Set<Stock> stocks;
+    private Set<Sorter> sorters;
+    private List<String> summary;
+    private List<Stock> stocks;
 
     public static ResultBuilder aResult() {
         return new ResultBuilder();
@@ -23,11 +25,6 @@ public class ResultBuilder {
 
     public ResultBuilder setStartTimestamp(String startTimestamp) {
         this.startTimestamp = startTimestamp;
-        return this;
-    }
-
-    public ResultBuilder setStopTimestamp(String stopTimestamp) {
-        this.stopTimestamp = stopTimestamp;
         return this;
     }
 
@@ -51,17 +48,22 @@ public class ResultBuilder {
         return this;
     }
 
-    public ResultBuilder setSummary(Set<String> summary) {
+    public ResultBuilder setSorters(Set<Sorter> sorters) {
+        this.sorters = sorters;
+        return this;
+    }
+
+    public ResultBuilder setSummary(List<String> summary) {
         this.summary = summary;
         return this;
     }
 
-    public ResultBuilder setStocks(Set<Stock> stocks) {
+    public ResultBuilder setStocks(List<Stock> stocks) {
         this.stocks = stocks;
         return this;
     }
 
     public Result build() {
-        return new Result(startTimestamp, stopTimestamp, executionTime, resultSize, filters, recognizers, summary, stocks);
+        return new Result(startTimestamp, executionTime, resultSize, filters, recognizers, sorters, summary, stocks);
     }
 }

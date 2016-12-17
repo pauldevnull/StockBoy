@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import yahoofinance.Stock;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -22,7 +23,7 @@ public class FilterService {
         this.filters = filters;
     }
 
-    public void filter(Set<Stock> stocks) {
+    public void filter(List<Stock> stocks) {
         if (!filters.isEmpty() && !stocks.isEmpty()) {
             LOGGER.info(Status.FILTERING_STOCKS.getMessage());
             filters.forEach(f -> f.filter(stocks));

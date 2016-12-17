@@ -8,10 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 import yahoofinance.Stock;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.assertTrue;
 
@@ -21,7 +18,7 @@ public class CurrencyFilterTest {
     private static final Set<Currency> CURRENCIES = Collections.singleton(Currency.USD);
     private static final Set<String> VALID_SYMBOLS = new HashSet<>(Arrays.asList("A", "B", "C", "D", "E"));
 
-    private Set<Stock> stocks = StockFactory.buildDefaultStocks();
+    private List<Stock> stocks = StockFactory.buildDefaultStocks();
     private CurrencyFilter currencyFilter;
 
     @Before
@@ -31,7 +28,7 @@ public class CurrencyFilterTest {
 
     @Test
     public void apply_WithListOfStocks_ExpectOnlyStocksWithValidCurrencies() {
-        Set<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
+        List<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
 
         currencyFilter.filter(stocks);
 

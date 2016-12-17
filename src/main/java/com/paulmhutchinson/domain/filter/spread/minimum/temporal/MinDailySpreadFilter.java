@@ -9,7 +9,7 @@ import yahoofinance.quotes.stock.StockQuote;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Set;
+import java.util.List;
 
 @Component("MinDailySpreadFilter")
 public class MinDailySpreadFilter extends MinSpreadFilter {
@@ -24,7 +24,7 @@ public class MinDailySpreadFilter extends MinSpreadFilter {
     }
 
     @Override
-    public void filter(Set<Stock> stocks) {
+    public void filter(List<Stock> stocks) {
         printStatusToLogger();
         CollectionUtils.filter(stocks, stock -> isGreaterThanMinSpread(getSpread(stock)));
     }

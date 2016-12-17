@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 public final class FileWriterUtil {
 
-    public static final String FILENAME = "output/" + DateTime.now().toString() + ".txt";
+    public static final String FILENAME = "output/" + DateTime.now().toString() + ".json";
 
     private FileWriterUtil() {
         throw new AssertionError();

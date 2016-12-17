@@ -8,10 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 import yahoofinance.Stock;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.assertTrue;
 
@@ -20,7 +17,7 @@ public class ExchangeFilterTest {
 
     private static final Set<String> EXCHANGES = new HashSet<>(Collections.singletonList(Exchange.DOW.getExchange()));
     private static final Set<String> VALID_SYMBOLS = new HashSet<>(Arrays.asList("A", "B", "C", "D", "E"));
-    private Set<Stock> stocks = StockFactory.buildDefaultStocks();
+    private List<Stock> stocks = StockFactory.buildDefaultStocks();
     private ExchangeFilter exchangeFilter;
 
     @Before
@@ -30,7 +27,7 @@ public class ExchangeFilterTest {
 
     @Test
     public void apply_WithListOfStocksAndExchanges_ExpectOnlyStocksWithValidExchanges() {
-        Set<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
+        List<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
 
         exchangeFilter.filter(stocks);
 

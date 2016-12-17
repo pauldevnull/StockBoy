@@ -10,6 +10,7 @@ import yahoofinance.Stock;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertTrue;
@@ -19,7 +20,7 @@ public class PercentChangeFromYearLowFilterTest {
 
     private static final BigDecimal PERCENT_CHANGE_FROM_YEAR_LOW = new BigDecimal(50);
     private static final Set<String> VALID_SYMBOLS = new HashSet<>(Arrays.asList("A", "B", "C", "D", "E"));
-    private Set<Stock> stocks = StockFactory.buildDefaultStocks();
+    private List<Stock> stocks = StockFactory.buildDefaultStocks();
 
     private PercentChangeFromYearLowFilter percentChangeFromYearLowFilter;
 
@@ -30,7 +31,7 @@ public class PercentChangeFromYearLowFilterTest {
 
     @Test
     public void apply_WithListOfStocksAndMaxPrice_ExpectOnlyStocksWithPriceEqualToOrLessThanMaxPrice() {
-        Set<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
+        List<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
 
         percentChangeFromYearLowFilter.filter(stocks);
 

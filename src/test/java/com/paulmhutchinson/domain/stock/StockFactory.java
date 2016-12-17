@@ -12,7 +12,7 @@ public class StockFactory {
     public static final Set<String> SYMBOLS = new LinkedHashSet<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J"));
     private static final Set<String> FILTERED_SYMBOLS = new HashSet<>(Arrays.asList("C", "D", "E"));
 
-    public static Set<Stock> buildDefaultStocks() {
+    public static List<Stock> buildDefaultStocks() {
         List<String> symbols = new ArrayList<>(SYMBOLS);
         return IntStream.range(0, symbols.size())
                 .mapToObj(i ->
@@ -24,12 +24,12 @@ public class StockFactory {
                                 .setYearLow(new BigDecimal(20))
                                 .setYearHigh(new BigDecimal(20))
                                 .build())
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
-    public static Set<Stock> buildDefaultFilteredStocks() {
+    public static List<Stock> buildDefaultFilteredStocks() {
         List<String> filteredSymbols = new ArrayList<>(FILTERED_SYMBOLS);
-        return new LinkedHashSet<>(IntStream.range(2, filteredSymbols.size() + 2)
+        return IntStream.range(2, filteredSymbols.size() + 2)
                 .mapToObj(i ->
                         StockBuilder.aStock()
                                 .setSymbol(filteredSymbols.get(i - 2))
@@ -39,10 +39,10 @@ public class StockFactory {
                                 .setYearLow(new BigDecimal(20))
                                 .setYearHigh(new BigDecimal(20))
                                 .build())
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 
-    public static Set<Stock> getStocksFromSymbols(Set<Stock> stocks, Set<String> symbols) {
-        return stocks.stream().filter(s -> symbols.contains(s.getSymbol())).collect(Collectors.toSet());
+    public static List<Stock> getStocksFromSymbols(List<Stock> stocks, Set<String> symbols) {
+        return stocks.stream().filter(s -> symbols.contains(s.getSymbol())).collect(Collectors.toList());
     }
 }

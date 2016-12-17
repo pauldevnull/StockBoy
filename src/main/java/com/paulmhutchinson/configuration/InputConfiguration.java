@@ -5,6 +5,7 @@ import com.paulmhutchinson.service.filewriter.FileWriterService;
 import com.paulmhutchinson.service.filter.FilterService;
 import com.paulmhutchinson.service.recognizer.RecognizerService;
 import com.paulmhutchinson.service.result.ResultService;
+import com.paulmhutchinson.service.sorter.SorterService;
 import com.paulmhutchinson.util.filewriter.FileWriterUtil;
 import com.paulmhutchinson.util.input.InputUtil;
 import com.paulmhutchinson.util.stock.StockUtil;
@@ -34,6 +35,13 @@ public class InputConfiguration {
     }
 
     @Autowired
+    @Bean(name = "output")
+    @DependsOn("stockInput")
+    public boolean output(StockInput input) {
+        return input.isOutput();
+    }
+
+    @Autowired
     @Bean(name = "symbols")
     @DependsOn("stockInput")
     public Set<String> symbols(StockInput input) throws IOException {
@@ -46,6 +54,8 @@ public class InputConfiguration {
     @Bean(name = "resultService")
     @DependsOn("symbols")
     public ResultService resultService(StockInput input) {
-        return new ResultService(new FilterService(input.getFilters()), new RecognizerService(input.getRecognizers()));
+        return new ResultService(new FilterService(input.getFilters()),
+                                 new RecognizerService(input.getRecognizers()),
+                                 new SorterService(input.getSorters()));
     }
 }

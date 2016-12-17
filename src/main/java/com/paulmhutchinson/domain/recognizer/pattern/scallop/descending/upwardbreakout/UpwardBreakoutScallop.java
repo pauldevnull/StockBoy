@@ -7,8 +7,8 @@ import com.paulmhutchinson.domain.stock.VolumeTrend;
 import yahoofinance.Stock;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /*
 FINDINGS:
@@ -27,7 +27,7 @@ public class UpwardBreakoutScallop implements DescendingScallop {
     }
 
     @Override
-    public void recognize(Set<Stock> stocks) {
+    public void recognize(List<Stock> stocks) {
 
     }
 

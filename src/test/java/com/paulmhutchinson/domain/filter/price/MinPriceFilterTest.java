@@ -10,6 +10,7 @@ import yahoofinance.Stock;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertTrue;
@@ -20,7 +21,7 @@ public class MinPriceFilterTest {
     private static final BigDecimal MIN_PRICE = new BigDecimal(12);
     private static final Set<String> VALID_SYMBOLS = new HashSet<>(Arrays.asList("F", "G", "H", "I", "J"));
 
-    private Set<Stock> stocks = StockFactory.buildDefaultStocks();
+    private List<Stock> stocks = StockFactory.buildDefaultStocks();
     private MinPriceFilter minPriceFilter;
 
     @Before
@@ -30,7 +31,7 @@ public class MinPriceFilterTest {
 
     @Test
     public void apply_WithListOfStocksAndMinPrice_ExpectOnlyStocksWithPriceEqualToOrGreaterThanMinPrice() {
-        Set<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
+        List<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
 
         minPriceFilter.filter(stocks);
 

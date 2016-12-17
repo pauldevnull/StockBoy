@@ -20,7 +20,7 @@ public class FileWriterService {
     }
 
     public boolean write(Result result) throws Exception {
-        LOGGER.info(Status.WRITING.getMessage());
+        LOGGER.info(Status.WRITING.getMessage(), filename);
         PrintWriter writer = new PrintWriter(filename, ENCODING);
         writer.print(new GsonBuilder()
                 .setPrettyPrinting()

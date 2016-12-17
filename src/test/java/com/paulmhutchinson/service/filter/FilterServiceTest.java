@@ -16,10 +16,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import yahoofinance.Stock;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.assertTrue;
 
@@ -32,7 +29,7 @@ public class FilterServiceTest {
     private static final BigDecimal MAX_PRICE = new BigDecimal(16);
     private static final Set<String> VALID_SYMBOLS = new HashSet<>(Arrays.asList("E", "C", "D"));
 
-    private Set<Stock> stocks = StockFactory.buildDefaultStocks();
+    private List<Stock> stocks = StockFactory.buildDefaultStocks();
     private FilterService filterService;
 
     @Before
@@ -48,7 +45,7 @@ public class FilterServiceTest {
 
     @Test
     public void getFilteredStocks_withAllFilters_expectOnlyStocksWithinConstraints() {
-        Set<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
+        List<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
 
         filterService.filter(stocks);
 

@@ -1,5 +1,6 @@
 package com.paulmhutchinson.domain.recognizer.pattern.flag.highandtight;
 
+import com.google.gson.annotations.SerializedName;
 import com.paulmhutchinson.domain.market.MarketType;
 import com.paulmhutchinson.domain.recognizer.RecognizerType;
 import com.paulmhutchinson.domain.recognizer.pattern.PatternData;
@@ -16,8 +17,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /*
 The pattern sports a huge average rise with small failures.
@@ -42,11 +43,12 @@ The volume trend in the flag should be receding for best
 performance.
  */
 
-@Component
+@Component("HighAndTightFlag")
 public class HighAndTightFlag implements Flag, Serializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HighAndTightFlag.class);
 
+    @SerializedName("recognizerType")
     private RecognizerType recognizerType;
     private transient Map<MarketType, PatternData> patternData;
 
@@ -55,7 +57,7 @@ public class HighAndTightFlag implements Flag, Serializable {
         this.patternData = buildPatternData();
     }
 
-    public void recognize(Set<Stock> stocks) {
+    public void recognize(List<Stock> stocks) {
         LOGGER.info(Status.RECOGNIZING_PATTERN.getMessage(), recognizerType.toString());
         stocks.removeIf(this::isNotSubstantialRise);
     }

@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
 import java.math.BigDecimal;
-import java.util.Set;
+import java.math.RoundingMode;
+import java.util.List;
 
 @Component("PercentChangeFromYearLowFilter")
 public class PercentChangeFromYearLowFilter extends Filter {
@@ -17,12 +18,12 @@ public class PercentChangeFromYearLowFilter extends Filter {
     public PercentChangeFromYearLowFilter() {}
 
     public PercentChangeFromYearLowFilter(BigDecimal percentChangeFromYearLow) {
-        super(FilterType.PERCENT_CHANGE_FROM_YEAR_LOW, percentChangeFromYearLow.toString());
+        super(FilterType.PERCENT_CHANGE_FROM_YEAR_LOW, percentChangeFromYearLow.setScale(2, RoundingMode.FLOOR).toString());
         this.percentChangeFromYearLow = percentChangeFromYearLow;
     }
 
     @Override
-    public void filter(Set<Stock> stocks) {
+    public void filter(List<Stock> stocks) {
         printStatusToLogger();
         CollectionUtils.filter(stocks, stock -> isWithinPercentOfYearLow(stock.getQuote().getChangeFromYearLowInPercent()));
     }

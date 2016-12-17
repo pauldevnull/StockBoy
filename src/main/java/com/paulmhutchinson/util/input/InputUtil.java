@@ -7,6 +7,8 @@ import com.paulmhutchinson.domain.filter.FilterAdapter;
 import com.paulmhutchinson.domain.input.StockInput;
 import com.paulmhutchinson.domain.recognizer.Recognizer;
 import com.paulmhutchinson.domain.recognizer.RecognizerAdapter;
+import com.paulmhutchinson.domain.sorter.Sorter;
+import com.paulmhutchinson.domain.sorter.SorterAdapter;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,6 +25,7 @@ public final class InputUtil {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Filter.class, new FilterAdapter());
         gsonBuilder.registerTypeAdapter(Recognizer.class, new RecognizerAdapter());
+        gsonBuilder.registerTypeAdapter(Sorter.class, new SorterAdapter());
         Gson gson = gsonBuilder.create();
         return gson.fromJson(json, StockInput.class);
     }

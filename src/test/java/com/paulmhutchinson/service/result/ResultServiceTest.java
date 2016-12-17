@@ -6,6 +6,7 @@ import com.paulmhutchinson.domain.result.ResultFactory;
 import com.paulmhutchinson.domain.stock.StockFactory;
 import com.paulmhutchinson.service.filter.FilterService;
 import com.paulmhutchinson.service.recognizer.RecognizerService;
+import com.paulmhutchinson.service.sorter.SorterService;
 import org.apache.commons.collections4.SetUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +28,8 @@ public class ResultServiceTest {
     public void init() {
         FilterService filterService = new FilterService(FilterFactory.buildDefaultFilters());
         RecognizerService recognizerService = new RecognizerService(SetUtils.emptySet());//RecognizerFactory.buildDefaultRecognizers());
-        resultService = new ResultService(filterService, recognizerService);
+        SorterService sorterService = new SorterService(SetUtils.emptySet());
+        resultService = new ResultService(filterService, recognizerService, sorterService);
     }
 
     @Test

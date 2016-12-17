@@ -12,8 +12,7 @@ import yahoofinance.YahooFinance;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -27,21 +26,17 @@ public final class StockUtil {
         throw new AssertionError();
     }
 
-    public static Set<Stock> getStocksForSymbols(Set<String> symbols) {
-        if (!symbols.isEmpty()) {
-            LOGGER.info(Status.RETRIEVING_STOCKS.getMessage());
-            return new HashSet<>(YahooFinance.get(symbols.toArray(new String[symbols.size()])).values());
-        } else {
-            return new HashSet<>();
-        }
+    public static List<Stock> getStocksForSymbols(Set<String> symbols) {
+        LOGGER.info(Status.RETRIEVING_STOCKS.getMessage());
+        return new ArrayList<>(YahooFinance.get(symbols.toArray(new String[symbols.size()])).values());
     }
 
-    public static Set<Stock> getStocksForExchange(Exchange exchange) throws IOException {
+    public static List<Stock> getStocksForExchange(Exchange exchange) throws IOException {
         Set<String> symbols = getSymbolsFromFile(exchange.getFilename());
         return getStocksForSymbols(symbols);
     }
 
-    public static Set<Stock> getStocksFromFile(String filename) throws IOException {
+    public static List<Stock> getStocksFromFile(String filename) throws IOException {
         Set<String> symbols = getSymbolsFromFile(filename);
         return getStocksForSymbols(symbols);
     }

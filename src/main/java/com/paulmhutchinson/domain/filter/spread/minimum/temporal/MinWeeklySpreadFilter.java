@@ -10,7 +10,6 @@ import yahoofinance.histquotes.HistoricalQuote;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Set;
 
 @Component("WeeklySpreadFilter")
 public class MinWeeklySpreadFilter extends MinSpreadFilter {
@@ -25,7 +24,7 @@ public class MinWeeklySpreadFilter extends MinSpreadFilter {
     }
 
     @Override
-    public void filter(Set<Stock> stocks) {
+    public void filter(List<Stock> stocks) {
         printStatusToLogger();
         CollectionUtils.filter(stocks, stock -> isGreaterThanMinSpread(getSpread(stock)));
     }

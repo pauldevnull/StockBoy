@@ -3,11 +3,11 @@ package com.paulmhutchinson.domain.recognizer.pattern.scallop.descending.downwar
 import com.paulmhutchinson.domain.recognizer.pattern.scallop.descending.DescendingScallop;
 import yahoofinance.Stock;
 
-import java.util.Set;
+import java.util.List;
 
 public class DownwardBreakoutScallop implements DescendingScallop {
-    @Override
-    public void recognize(Set<Stock> stocks) {
 
+    @Override
+    public void recognize(List<Stock> stocks) {
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Component
 public abstract class Filter implements Serializable {
@@ -30,12 +30,11 @@ public abstract class Filter implements Serializable {
     }
 
     @Autowired
-    public abstract void filter(Set<Stock> stocks);
+    public abstract void filter(List<Stock> stocks);
 
     protected void printStatusToLogger() {
         LOGGER.info(Status.APPLYING_FILTER.getMessage(), filterType, filterValue);
     }
-
 
     @Override
     public String toString() {

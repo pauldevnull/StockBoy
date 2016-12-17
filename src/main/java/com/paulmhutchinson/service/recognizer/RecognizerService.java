@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import yahoofinance.Stock;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -22,7 +23,7 @@ public class RecognizerService {
         this.recognizers = recognizers;
     }
 
-    public void recognize(Set<Stock> stocks) {
+    public void recognize(List<Stock> stocks) {
         if (!recognizers.isEmpty()) {
             LOGGER.info(Status.RECOGNIZING_STOCKS.getMessage());
             recognizers.forEach(r -> r.recognize(stocks));

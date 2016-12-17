@@ -1,4 +1,5 @@
 {
+  "output": true,
   "filters": [
     {
       "filterType": "MAX_PRICE",
@@ -10,12 +11,18 @@
     },
     {
       "filterType": "MIN_DAILY_SPREAD",
-      "filterValue": "0.10"
+      "filterValue": "0.02"
     }
   ],
   "recognizers": [
     {
       "recognizerType": "HIGH_AND_TIGHT_FLAG"
+    }
+  ],
+  "sorters": [
+    {
+      "sortType": "CURRENT_PRICE",
+      "sortOrder": "ASCENDING"
     }
   ],
   "symbols": [],

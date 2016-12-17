@@ -2,54 +2,53 @@ package com.paulmhutchinson.service.result;
 
 import com.paulmhutchinson.domain.result.Result;
 import com.paulmhutchinson.domain.result.ResultBuilder;
-import com.paulmhutchinson.domain.status.Status;
 import com.paulmhutchinson.service.filter.FilterService;
 import com.paulmhutchinson.service.recognizer.RecognizerService;
+import com.paulmhutchinson.service.sorter.SorterService;
 import com.paulmhutchinson.util.stock.StockUtil;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import yahoofinance.Stock;
 
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class ResultService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ResultService.class);
-
     private FilterService filterService;
     private RecognizerService recognizerService;
+    private SorterService sorterService;
 
-    public ResultService() {
-    }
+    public ResultService() {}
 
     @Autowired
-    public ResultService(FilterService filterService, RecognizerService recognizerService) {
+    public ResultService(FilterService filterService, RecognizerService recognizerService, SorterService sorterService) {
         this.filterService = filterService;
         this.recognizerService = recognizerService;
+        this.sorterService = sorterService;
     }
 
     public Result getResultFromSymbols(Set<String> symbols) throws IOException {
-        LOGGER.info(Status.RETRIEVING_RESULT.getMessage());
-        DateTime startTimestamp = DateTime.now();
-        Set<Stock> stocks = StockUtil.getStocksForSymbols(symbols);
+        List<Stock> stocks = StockUtil.getStocksForSymbols(symbols);
         filterService.filter(stocks);
         recognizerService.recognize(stocks);
-        DateTime stopTimestamp = DateTime.now();
+        sorterService.sort(stocks);
+        long executionTime = ManagementFactory.getRuntimeMXBean().getUptime();
         return ResultBuilder.aResult()
-                .setStartTimestamp(startTimestamp.toString())
-                .setStopTimestamp(stopTimestamp.toString())
-                .setExecutionTime(new Period(startTimestamp, stopTimestamp).getMillis())
+                .setStartTimestamp(DateTime.now().minus(executionTime).toString())
+                .setExecutionTime(ManagementFactory.getRuntimeMXBean().getUptime())
                 .setResultSize(stocks.size())
                 .setFilters(filterService.getFilters())
                 .setRecognizers(recognizerService.getRecognizers())
-                .setSummary(stocks.stream().map(Stock::getSymbol).collect(Collectors.toSet()))
+                .setSorters(sorterService.getSorters())
+                .setSummary(stocks.stream().map(Stock::toString).collect(Collectors.toList()))
                 .setStocks(stocks)
                 .build();
     }
