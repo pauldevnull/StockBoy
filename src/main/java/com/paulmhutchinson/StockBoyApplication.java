@@ -40,24 +40,7 @@ public class StockBoyApplication implements CommandLineRunner {
     }
 
     public static void main(String[] args) {
-        YahooFinance.logger.setLevel(Level.OFF);
+        YahooFinance.logger.setLevel(Level.SEVERE);
         SpringApplication.run(StockBoyApplication.class, args).close();
     }
 }
-
-/*
-    TODO:
-    - Weekly spread, monthly spread <= PERCENT temporal spread from average (daily | weekly | monthly) price <= EQUIV TO A VOLATILITY SCORE!
-    - trading strategies section of output: limit buy target, limit sell target
-    - Growth detection
-    - Watchlist
-    - Fix PercentChange filters
-    - Alerts for FDA approval on new drugs
-    - Fibonacci Retracement indicator
-    - 'Momentum' variable
-    - breakthrough price detector and range detectors
-    - good 'setup' (list of conditions met before trade is taken)
-    - earnings or FDA decision next day? then sell!
-    - spikes/dips in morning on market open?
-    - Page 677: Upward Breakouts ****
- */

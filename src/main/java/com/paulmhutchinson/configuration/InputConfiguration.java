@@ -46,7 +46,7 @@ public class InputConfiguration {
     @DependsOn("stockInput")
     public Set<String> symbols(StockInput input) throws IOException {
         Set<String> symbols =  input.getSymbols();
-        symbols.addAll(StockUtil.getSymbolsFromFile(input.getSymbolFile()));
+        symbols.addAll(StockUtil.getSymbolsFromFile(InputUtil.SYMBOL_FILE_PREFIX + input.getSymbolFile()));
         return symbols;
     }
 

@@ -11,13 +11,10 @@
     },
     {
       "filterType": "MIN_DAILY_SPREAD",
-      "filterValue": "0.02"
+      "filterValue": "0.05"
     }
   ],
   "recognizers": [
-    {
-      "recognizerType": "HIGH_AND_TIGHT_FLAG"
-    }
   ],
   "sorters": [
     {
@@ -26,5 +23,5 @@
     }
   ],
   "symbols": [],
-  "symbolFile": "nasdaq_penny_symbols.csv"
+  "symbolFile": "nasdaq_ticker_pilot_symbols.csv"
 }

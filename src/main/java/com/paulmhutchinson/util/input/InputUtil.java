@@ -16,6 +16,8 @@ import java.nio.file.Paths;
 
 public final class InputUtil {
 
+    public static final String SYMBOL_FILE_PREFIX = "symbols/";
+
     private InputUtil() {
         throw new AssertionError();
     }

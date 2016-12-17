@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 public enum Exchange {
 
-    NASDAQ("^IXIC", "nasdaq_symbols.csv"),
-    NASDAQ_PENNY("^IXIC", "nasdaq_penny_symbols.csv"),
-    NYSE("NYSE", "nyse_symbols.csv"),
+    NASDAQ("^IXIC", "symbols/nasdaq_symbols.csv"),
+    NASDAQ_PENNY("^IXIC", "symbols/nasdaq_penny_symbols.csv"),
+    NYSE("NYSE", "symbols/nyse_symbols.csv"),
     SP("^GSPC", "sp_symbols.csv"),
     DOW("^DJI", "dow_symbols.csv"),
-    WATCHLIST("WATCHLIST", "watchlist.csv");
+    WATCHLIST("WATCHLIST", "symbols/watchlist.csv");
 
     private String exchange;
     private String filename;
