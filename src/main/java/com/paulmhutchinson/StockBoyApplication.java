@@ -35,7 +35,7 @@ public class StockBoyApplication implements CommandLineRunner {
             if (output) { fileWriterService.write(result); }
         } catch (Exception e) {
             e.printStackTrace();
-            System.exit(0);
+            System.exit(1);
         }
     }
 
