@@ -7,17 +7,19 @@ import com.paulmhutchinson.domain.recognizer.pattern.PatternData;
 import com.paulmhutchinson.domain.recognizer.pattern.flag.Flag;
 import com.paulmhutchinson.domain.status.Status;
 import com.paulmhutchinson.domain.stock.VolumeTrend;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 import yahoofinance.histquotes.HistoricalQuote;
+import yahoofinance.histquotes.Interval;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /*
@@ -75,12 +77,8 @@ public class HighAndTightFlag implements Flag, Serializable {
     }
 
     private boolean isNotSubstantialRise(Stock stock) {
-        Calendar from = Calendar.getInstance();
-        from.add(Calendar.MONTH, -2);
-        Calendar to = from;
-        to.add(Calendar.DAY_OF_YEAR, 1);
         try {
-            HistoricalQuote historicalQuote = stock.getHistory(from, to).get(0);
+            HistoricalQuote historicalQuote = stock.getHistory((DateTime.now().minusMonths(2).toCalendar(Locale.ENGLISH)), Interval.MONTHLY).get(0);
             BigDecimal historicalPrice = historicalQuote.getClose();
             BigDecimal targetPrice = historicalPrice.add(historicalPrice.multiply(new BigDecimal(0.9)));
             return stock.getQuote().getPrice().compareTo(targetPrice) < 0;
