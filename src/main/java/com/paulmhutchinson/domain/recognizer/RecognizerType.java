@@ -4,15 +4,15 @@ import com.paulmhutchinson.domain.recognizer.pattern.flag.highandtight.HighAndTi
 
 public enum RecognizerType {
 
-    HIGH_AND_TIGHT_FLAG(HighAndTightFlag.class.getName());
+    HIGH_AND_TIGHT_FLAG(HighAndTightFlag.class);
 
-    private String clazz;
+    private Class clazz;
 
-    RecognizerType(String clazz) {
+    RecognizerType(Class clazz) {
         this.clazz = clazz;
     }
 
-    public String getClazz() {
+    public Class getClazz() {
         return clazz;
     }
 }

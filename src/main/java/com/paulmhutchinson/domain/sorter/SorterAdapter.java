@@ -14,7 +14,7 @@ public class SorterAdapter implements JsonDeserializer<Sorter> {
         SorterType sorterType = SorterType.valueOf(jsonObject.get("sorterType").getAsString());
         SortOrder sorterOrder = SortOrder.valueOf(jsonObject.get("sorterOrder").getAsString());
         try {
-            Class<?> clazz = Class.forName(sorterType.getSorterClass());
+            Class<?> clazz = Class.forName(sorterType.getSorterClass().getName());
             Constructor<?> constructor = clazz.getConstructor(SortOrder.class);
             return (Sorter) constructor.newInstance(sorterOrder);
         } catch (ReflectiveOperationException e) {

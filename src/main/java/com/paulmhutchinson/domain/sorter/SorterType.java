@@ -4,15 +4,15 @@ import com.paulmhutchinson.domain.sorter.price.CurrentPriceSorter;
 
 public enum SorterType {
 
-    CURRENT_PRICE(CurrentPriceSorter.class.getName());
+    CURRENT_PRICE(CurrentPriceSorter.class);
 
-    private String sorterClass;
+    private Class sorterClass;
 
-    SorterType(String sorterClass) {
+    SorterType(Class sorterClass) {
         this.sorterClass = sorterClass;
     }
 
-    public String getSorterClass() {
+    public Class getSorterClass() {
         return sorterClass;
     }
 }

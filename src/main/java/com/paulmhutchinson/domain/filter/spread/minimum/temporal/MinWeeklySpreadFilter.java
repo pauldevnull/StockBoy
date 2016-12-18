@@ -3,18 +3,13 @@ package com.paulmhutchinson.domain.filter.spread.minimum.temporal;
 import com.paulmhutchinson.domain.filter.FilterType;
 import com.paulmhutchinson.domain.filter.spread.minimum.MinSpreadFilter;
 import org.apache.commons.collections4.CollectionUtils;
-import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
-import yahoofinance.histquotes.HistoricalQuote;
-import yahoofinance.histquotes.Interval;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
-@Component("WeeklySpreadFilter")
+@Component("MinWeeklySpreadFilter")
 public class MinWeeklySpreadFilter extends MinSpreadFilter {
 
     private transient BigDecimal minWeeklySpread;
@@ -29,23 +24,11 @@ public class MinWeeklySpreadFilter extends MinSpreadFilter {
     @Override
     public void filter(List<Stock> stocks) {
         printStatusToLogger();
-        CollectionUtils.filter(stocks, stock -> isGreaterThanMinSpread(getSpread(stock)));
-    }
-
-    @Override
-    protected BigDecimal getSpread(Stock stock) {
-        try {
-            List<HistoricalQuote> historicalQuotes = stock.getHistory(DateTime.now().minusWeeks(1).toCalendar(Locale.ENGLISH), Calendar.getInstance(), Interval.DAILY);
-            BigDecimal weeklyLow = historicalQuotes.stream().min((q1, q2) -> q1.getLow().compareTo(q2.getLow())).get().getLow();
-            BigDecimal weeklyHigh = historicalQuotes.stream().min((q1, q2) -> q1.getHigh().compareTo(q2.getHigh())).get().getHigh();
-            return weeklyHigh.subtract(weeklyLow);
-        } catch (Exception e) {
-            return BigDecimal.ZERO;
-        }
+        CollectionUtils.filter(stocks, stock -> isGreaterThanMinSpread(getWeeklySpread(stock)));
     }
 
     @Override
     protected boolean isGreaterThanMinSpread(BigDecimal weeklySpread) {
-        return weeklySpread.compareTo(minWeeklySpread) >= 0;
+        return weeklySpread.compareTo(this.minWeeklySpread) <= 0;
     }
 }

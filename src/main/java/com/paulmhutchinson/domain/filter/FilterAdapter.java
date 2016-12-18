@@ -13,7 +13,7 @@ public class FilterAdapter implements JsonDeserializer<Filter> {
         FilterType filterType = FilterType.valueOf(jsonObject.get("filterType").getAsString());
         String filterValue = jsonObject.get("filterValue").getAsString();
         try {
-            Class<?> clazz = Class.forName(filterType.getClazz());
+            Class<?> clazz = Class.forName(filterType.getClazz().getName());
             Constructor<?> constructor = clazz.getConstructor(String.class);
             return (Filter) constructor.newInstance(filterValue);
         } catch (ReflectiveOperationException e) {

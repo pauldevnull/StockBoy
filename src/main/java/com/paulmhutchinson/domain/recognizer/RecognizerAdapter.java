@@ -11,7 +11,7 @@ public class RecognizerAdapter implements JsonDeserializer<Recognizer> {
         JsonObject jsonObject =  json.getAsJsonObject();
         RecognizerType recognizerType = RecognizerType.valueOf(jsonObject.get("recognizerType").getAsString());
         try {
-            return (Recognizer) Class.forName(recognizerType.getClazz()).newInstance();
+            return (Recognizer) Class.forName(recognizerType.getClazz().getName()).newInstance();
         } catch (ReflectiveOperationException e) {
             throw new InvalidRecognizerRequestException(e.getMessage());
         }

@@ -14,6 +14,11 @@ import java.util.Calendar;
 import java.util.Set;
 import java.util.logging.Level;
 
+
+/*
+DO MIN/MAX DAILY BOUNCE (5 cent intervals) COUNT
+ */
+
 @SpringBootApplication
 public class StockBoyApplication implements CommandLineRunner {
 

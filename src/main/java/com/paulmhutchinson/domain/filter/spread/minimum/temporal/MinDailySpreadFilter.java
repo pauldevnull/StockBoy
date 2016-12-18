@@ -5,7 +5,6 @@ import com.paulmhutchinson.domain.filter.spread.minimum.MinSpreadFilter;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
-import yahoofinance.quotes.stock.StockQuote;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -25,17 +24,11 @@ public class MinDailySpreadFilter extends MinSpreadFilter {
     @Override
     public void filter(List<Stock> stocks) {
         printStatusToLogger();
-        CollectionUtils.filter(stocks, stock -> isGreaterThanMinSpread(getSpread(stock)));
-    }
-
-    @Override
-    protected BigDecimal getSpread(Stock stock) {
-        StockQuote quote = stock.getQuote();
-        return quote.getDayHigh().subtract(quote.getDayLow());
+        CollectionUtils.filter(stocks, stock -> isGreaterThanMinSpread(getDailySpread(stock)));
     }
 
     @Override
     protected boolean isGreaterThanMinSpread(BigDecimal dailySpread) {
-        return dailySpread.compareTo(minDailySpread) >= 0;
+        return dailySpread.compareTo(this.minDailySpread) >= 0;
     }
  }
