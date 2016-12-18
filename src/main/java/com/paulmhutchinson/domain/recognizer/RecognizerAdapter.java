@@ -10,13 +10,16 @@ public class RecognizerAdapter implements JsonDeserializer<Recognizer> {
     public Recognizer deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject =  json.getAsJsonObject();
         RecognizerType recognizerType = RecognizerType.valueOf(jsonObject.get("recognizerType").getAsString());
-        Recognizer recognizer = null;
         try {
-            recognizer = (Recognizer) Class.forName(recognizerType.getRecognizerClass()).newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(1);
+            return (Recognizer) Class.forName(recognizerType.getClazz()).newInstance();
+        } catch (ReflectiveOperationException e) {
+            throw new InvalidRecognizerRequestException(e.getMessage());
         }
-        return recognizer;
+    }
+
+    private static final class InvalidRecognizerRequestException extends RuntimeException {
+        public InvalidRecognizerRequestException(String message) {
+            super(message);
+        }
     }
 }

@@ -41,7 +41,7 @@ public class MinWeeklySpreadFilter extends MinSpreadFilter {
             BigDecimal weeklyHigh = historicalQuotes.stream().min((q1, q2) -> q1.getHigh().compareTo(q2.getHigh())).get().getHigh();
             return weeklyHigh.subtract(weeklyLow);
         } catch (Exception e) {
-            return new BigDecimal(0);
+            return BigDecimal.ZERO;
         }
     }
 

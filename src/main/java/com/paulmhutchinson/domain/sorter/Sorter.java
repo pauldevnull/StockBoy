@@ -14,13 +14,10 @@ import java.util.List;
 @Component
 public abstract class Sorter implements Serializable {
 
-    public static final String SORTER_CLASS_PREFIX = "com.paulmhutchinson.domain.sorter.";
-
     private static transient final Logger LOGGER = LoggerFactory.getLogger(Sorter.class);
 
     @SerializedName("sorterType")
     private SorterType sorterType;
-
     @SerializedName("sorterOrder")
     private SortOrder sorterOrder;
 

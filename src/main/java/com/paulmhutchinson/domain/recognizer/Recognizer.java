@@ -7,7 +7,5 @@ import java.util.List;
 
 @Component("Recognizer")
 public interface Recognizer {
-    String RECOGNIZER_CLASS_PREFIX = "com.paulmhutchinson.domain.recognizer.";
-
     void recognize(List<Stock> stocks);
 }

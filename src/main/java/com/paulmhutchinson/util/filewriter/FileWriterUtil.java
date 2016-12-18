@@ -23,7 +23,7 @@ public final class FileWriterUtil {
         }
     }
 
-    public static class InputStreamOpeningException extends RuntimeException {
+    private static final class InputStreamOpeningException extends RuntimeException {
         public InputStreamOpeningException(Throwable cause) {
             super(cause);
         }

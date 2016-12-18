@@ -13,15 +13,18 @@ public class SorterAdapter implements JsonDeserializer<Sorter> {
         JsonObject jsonObject =  json.getAsJsonObject();
         SorterType sorterType = SorterType.valueOf(jsonObject.get("sorterType").getAsString());
         SortOrder sorterOrder = SortOrder.valueOf(jsonObject.get("sorterOrder").getAsString());
-        Sorter sorter = null;
         try {
             Class<?> clazz = Class.forName(sorterType.getSorterClass());
             Constructor<?> constructor = clazz.getConstructor(SortOrder.class);
-            sorter = (Sorter) constructor.newInstance(sorterOrder);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(1);
+            return (Sorter) constructor.newInstance(sorterOrder);
+        } catch (ReflectiveOperationException e) {
+            throw new InvalidSorterRequestException(e.getMessage());
         }
-        return sorter;
+    }
+
+    private static final class InvalidSorterRequestException extends RuntimeException {
+        public InvalidSorterRequestException(String message) {
+            super(message);
+        }
     }
 }

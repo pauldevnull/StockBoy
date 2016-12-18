@@ -82,9 +82,8 @@ public class HighAndTightFlag implements Flag, Serializable {
         try {
             HistoricalQuote historicalQuote = stock.getHistory(from, to).get(0);
             BigDecimal historicalPrice = historicalQuote.getClose();
-            BigDecimal currentPrice = stock.getQuote().getPrice();
             BigDecimal targetPrice = historicalPrice.add(historicalPrice.multiply(new BigDecimal(0.9)));
-            return currentPrice.compareTo(targetPrice) < 0;
+            return stock.getQuote().getPrice().compareTo(targetPrice) < 0;
         } catch (Exception e) {
             return false;
         }

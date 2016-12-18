@@ -34,13 +34,18 @@ public class StockBoyApplication implements CommandLineRunner {
             Result result = resultService.getResultFromSymbols(symbols, historicalStart);
             if (output) { fileWriterService.write(result); }
         } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(1);
+            throw new ErrorProcessingResultException(e.getMessage());
         }
     }
 
     public static void main(String[] args) {
         YahooFinance.logger.setLevel(Level.OFF);
         SpringApplication.run(StockBoyApplication.class, args).close();
+    }
+
+    private static final class ErrorProcessingResultException extends RuntimeException {
+        public ErrorProcessingResultException(String message) {
+            super(message);
+        }
     }
 }

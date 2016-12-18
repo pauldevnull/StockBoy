@@ -12,15 +12,18 @@ public class FilterAdapter implements JsonDeserializer<Filter> {
         JsonObject jsonObject =  json.getAsJsonObject();
         FilterType filterType = FilterType.valueOf(jsonObject.get("filterType").getAsString());
         String filterValue = jsonObject.get("filterValue").getAsString();
-        Filter filter = null;
         try {
-            Class<?> clazz = Class.forName(filterType.getFilterClass());
+            Class<?> clazz = Class.forName(filterType.getClazz());
             Constructor<?> constructor = clazz.getConstructor(String.class);
-            filter = (Filter) constructor.newInstance(filterValue);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.exit(1);
+            return (Filter) constructor.newInstance(filterValue);
+        } catch (ReflectiveOperationException e) {
+            throw new InvalidFilterRequestException(e.getMessage());
         }
-        return filter;
+    }
+
+    private static final class InvalidFilterRequestException extends RuntimeException {
+        public InvalidFilterRequestException(String message) {
+            super(message);
+        }
     }
 }

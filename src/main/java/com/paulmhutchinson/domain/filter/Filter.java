@@ -13,13 +13,10 @@ import java.util.List;
 @Component
 public abstract class Filter implements Serializable {
 
-    public static final String FILTER_CLASS_PREFIX = "com.paulmhutchinson.domain.filter.";
-
     private static transient final Logger LOGGER = LoggerFactory.getLogger(Filter.class);
 
     @SerializedName("filterType")
     private FilterType filterType;
-
     @SerializedName("filterValue")
     private String filterValue;
 
