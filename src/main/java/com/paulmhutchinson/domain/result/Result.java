@@ -13,7 +13,9 @@ import java.util.Set;
 public class Result implements Serializable {
 
     @SerializedName("startTimestamp") private String startTimestamp;
-    @SerializedName("executionTimeInMilliseconds") private long executionTime;
+    @SerializedName("executionTimeInMilliseconds") private double executionTimeInMilliseconds;
+    @SerializedName("executionTimeInSeconds") private double executionTimeInSeconds;
+    @SerializedName("executionTimeInMinutes") private double executionTimeInMinutes;
     @SerializedName("resultSize") private int resultSize;
     @SerializedName("filters") private Set<Filter> filters;
     @SerializedName("recognizers") private Set<Recognizer> recognizers;
@@ -22,7 +24,9 @@ public class Result implements Serializable {
     @SerializedName("stocks") private List<Stock> stocks;
 
     public Result(final String startTimestamp,
-                  final long executionTime,
+                  final double executionTimeInMilliseconds,
+                  final double executionTimeInSeconds,
+                  final double executionTimeInMinutes,
                   final int resultSize,
                   final Set<Filter> filters,
                   final Set<Recognizer> recognizers,
@@ -30,7 +34,9 @@ public class Result implements Serializable {
                   final List<String> summary,
                   final List<Stock> stocks) {
         this.startTimestamp = startTimestamp;
-        this.executionTime = executionTime;
+        this.executionTimeInMilliseconds = executionTimeInMilliseconds;
+        this.executionTimeInSeconds = executionTimeInSeconds;
+        this.executionTimeInMinutes = executionTimeInMinutes;
         this.resultSize = resultSize;
         this.filters = filters;
         this.recognizers = recognizers;

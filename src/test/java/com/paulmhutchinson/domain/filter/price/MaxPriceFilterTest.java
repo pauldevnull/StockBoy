@@ -26,7 +26,7 @@ public class MaxPriceFilterTest {
 
     @Before
     public void init() {
-        maxPriceFilter = new MaxPriceFilter(MAX_PRICE);
+        maxPriceFilter = new MaxPriceFilter(MAX_PRICE.toString());
     }
 
     @Test

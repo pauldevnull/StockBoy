@@ -8,7 +8,6 @@ import yahoofinance.Stock;
 import yahoofinance.quotes.stock.StockQuote;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 
 @Component("MinDailySpreadFilter")
@@ -18,9 +17,9 @@ public class MinDailySpreadFilter extends MinSpreadFilter {
 
     public MinDailySpreadFilter() {}
 
-    public MinDailySpreadFilter(BigDecimal minDailySpread) {
-        super(FilterType.MIN_DAILY_SPREAD, minDailySpread.setScale(2, RoundingMode.FLOOR).toString());
-        this.minDailySpread = minDailySpread;
+    public MinDailySpreadFilter(String minDailySpread) {
+        super(FilterType.MIN_DAILY_SPREAD, minDailySpread);
+        this.minDailySpread = new BigDecimal(minDailySpread);
     }
 
     @Override

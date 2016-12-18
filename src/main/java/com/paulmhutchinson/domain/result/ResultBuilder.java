@@ -11,7 +11,9 @@ import java.util.Set;
 public class ResultBuilder {
 
     private String startTimestamp;
-    private long executionTime;
+    private double executionTimeInMilliseconds;
+    private double executionTimeInSeconds;
+    private double executionTimeInMinutes;
     private int resultSize;
     private Set<Filter> filters;
     private Set<Recognizer> recognizers;
@@ -28,8 +30,18 @@ public class ResultBuilder {
         return this;
     }
 
-    public ResultBuilder setExecutionTime(long executionTime) {
-        this.executionTime = executionTime;
+    public ResultBuilder setExecutionTimeInMilliseconds(double executionTimeInMilliseconds) {
+        this.executionTimeInMilliseconds = executionTimeInMilliseconds;
+        return this;
+    }
+
+    public ResultBuilder setExecutionTimeInSeconds(double executionTimeInSeconds) {
+        this.executionTimeInSeconds = executionTimeInSeconds;
+        return this;
+    }
+
+    public ResultBuilder setExecutionTimeInMinutes(double executionTimeInMinutes) {
+        this.executionTimeInMinutes = executionTimeInMinutes;
         return this;
     }
 
@@ -64,6 +76,6 @@ public class ResultBuilder {
     }
 
     public Result build() {
-        return new Result(startTimestamp, executionTime, resultSize, filters, recognizers, sorters, summary, stocks);
+        return new Result(startTimestamp, executionTimeInMilliseconds, executionTimeInSeconds, executionTimeInMinutes, resultSize, filters, recognizers, sorters, summary, stocks);
     }
 }

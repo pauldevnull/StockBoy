@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
 
@@ -34,7 +35,7 @@ public class ResultServiceTest {
 
     @Test
     public void getResult_withDefaultValues_expectCorrectResult() throws IOException {
-        Result result = resultService.getResultFromSymbols(StockFactory.SYMBOLS);
+        Result result = resultService.getResultFromSymbols(StockFactory.SYMBOLS, Calendar.getInstance());
 
         assertEquals(RESULT.toString(), result.toString());
     }

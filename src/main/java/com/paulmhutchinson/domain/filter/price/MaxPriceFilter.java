@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 
 @Component("MaxPriceFilter")
@@ -17,9 +16,9 @@ public class MaxPriceFilter extends Filter {
 
     public MaxPriceFilter() {}
 
-    public MaxPriceFilter(BigDecimal maxPrice) {
-        super(FilterType.MAX_PRICE, maxPrice.setScale(2, RoundingMode.FLOOR).toString());
-        this.maxPrice = maxPrice;
+    public MaxPriceFilter(String maxPrice) {
+        super(FilterType.MAX_PRICE, maxPrice);
+        this.maxPrice = new BigDecimal(maxPrice);
     }
 
     @Override

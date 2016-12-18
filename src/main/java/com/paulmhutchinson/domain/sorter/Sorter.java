@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 import com.paulmhutchinson.domain.status.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
@@ -15,22 +14,23 @@ import java.util.List;
 @Component
 public abstract class Sorter implements Serializable {
 
+    public static final String SORTER_CLASS_PREFIX = "com.paulmhutchinson.domain.sorter.";
+
     private static transient final Logger LOGGER = LoggerFactory.getLogger(Sorter.class);
 
     @SerializedName("sorterType")
-    private SortType sorterType;
+    private SorterType sorterType;
 
     @SerializedName("sorterOrder")
     private SortOrder sorterOrder;
 
     protected Sorter() {}
 
-    protected Sorter(SortType sorterType, SortOrder sorterOrder) {
+    protected Sorter(SorterType sorterType, SortOrder sorterOrder) {
         this.sorterType = sorterType;
         this.sorterOrder = sorterOrder;
     }
 
-    @Autowired
     public abstract void sort(List<Stock> stocks);
 
     protected void printStatusToLogger() {

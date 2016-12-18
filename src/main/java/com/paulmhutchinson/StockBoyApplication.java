@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import yahoofinance.YahooFinance;
 
 import javax.annotation.Resource;
+import java.util.Calendar;
 import java.util.Set;
 import java.util.logging.Level;
 
@@ -18,20 +19,19 @@ public class StockBoyApplication implements CommandLineRunner {
 
     @Resource
     private Boolean output;
-
     @Resource
     private Set<String> symbols;
-
+    @Autowired
+    private Calendar historicalStart;
     @Autowired
     private ResultService resultService;
-
     @Autowired
     private FileWriterService fileWriterService;
 
     @Override
     public void run(String[] args) throws Exception {
         try {
-            Result result = resultService.getResultFromSymbols(symbols);
+            Result result = resultService.getResultFromSymbols(symbols, historicalStart);
             if (output) { fileWriterService.write(result); }
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,7 +40,7 @@ public class StockBoyApplication implements CommandLineRunner {
     }
 
     public static void main(String[] args) {
-        YahooFinance.logger.setLevel(Level.SEVERE);
+        YahooFinance.logger.setLevel(Level.OFF);
         SpringApplication.run(StockBoyApplication.class, args).close();
     }
 }

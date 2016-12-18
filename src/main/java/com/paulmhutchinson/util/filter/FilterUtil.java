@@ -11,8 +11,9 @@ import com.paulmhutchinson.domain.filter.price.MinPriceFilter;
 import com.paulmhutchinson.domain.stock.Currency;
 import com.paulmhutchinson.domain.stock.Exchange;
 
-import java.math.BigDecimal;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class FilterUtil {
 
@@ -21,11 +22,11 @@ public final class FilterUtil {
     }
 
     public static final Map<FilterType, Filter> FILTERS = new HashMap<FilterType, Filter>() {{
-        put(FilterType.CURRENCY, new CurrencyFilter(new HashSet<>(Arrays.asList(Currency.values()))));
-        put(FilterType.EXCHANGE, new ExchangeFilter(Exchange.getExchanges()));
-        put(FilterType.MIN_PRICE, new MinPriceFilter(new BigDecimal(5)));
-        put(FilterType.MAX_PRICE, new MaxPriceFilter(new BigDecimal(5)));
-        put(FilterType.PERCENT_CHANGE_FROM_YEAR_HIGH, new PercentChangeFromYearHighFilter(new BigDecimal(10)));
-        put(FilterType.PERCENT_CHANGE_FROM_YEAR_LOW, new PercentChangeFromYearLowFilter(new BigDecimal(10)));
+        put(FilterType.CURRENCY, new CurrencyFilter(Arrays.toString(Currency.values())));
+        put(FilterType.EXCHANGE, new ExchangeFilter(Exchange.getExchanges().toString()));
+        put(FilterType.MIN_PRICE, new MinPriceFilter("5.0"));
+        put(FilterType.MAX_PRICE, new MaxPriceFilter("5.0"));
+        put(FilterType.PERCENT_CHANGE_FROM_YEAR_HIGH, new PercentChangeFromYearHighFilter("10.0"));
+        put(FilterType.PERCENT_CHANGE_FROM_YEAR_LOW, new PercentChangeFromYearLowFilter("10.0"));
     }};
 }

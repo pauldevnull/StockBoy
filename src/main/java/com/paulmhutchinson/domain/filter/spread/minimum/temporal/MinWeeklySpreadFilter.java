@@ -3,9 +3,11 @@ package com.paulmhutchinson.domain.filter.spread.minimum.temporal;
 import com.paulmhutchinson.domain.filter.FilterType;
 import com.paulmhutchinson.domain.filter.spread.minimum.MinSpreadFilter;
 import org.apache.commons.collections4.CollectionUtils;
+import org.joda.time.DateTimeConstants;
 import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 import yahoofinance.histquotes.HistoricalQuote;
+import yahoofinance.histquotes.Interval;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -18,9 +20,9 @@ public class MinWeeklySpreadFilter extends MinSpreadFilter {
 
     public MinWeeklySpreadFilter() {}
 
-    public MinWeeklySpreadFilter(BigDecimal minWeeklySpread) {
-        super(FilterType.MIN_WEEKLY_SPREAD, minWeeklySpread.toString());
-        this.minWeeklySpread = minWeeklySpread;
+    public MinWeeklySpreadFilter(String minWeeklySpread) {
+        super(FilterType.MIN_WEEKLY_SPREAD, minWeeklySpread);
+        this.minWeeklySpread = new BigDecimal(minWeeklySpread);
     }
 
     @Override
@@ -32,37 +34,16 @@ public class MinWeeklySpreadFilter extends MinSpreadFilter {
     @Override
     protected BigDecimal getSpread(Stock stock) {
         Calendar from = Calendar.getInstance();
-        from.add(Calendar.WEEK_OF_YEAR, -1);
-        Calendar to = from;
-        to.add(Calendar.WEEK_OF_YEAR, 1);
+        from.add(Calendar.DAY_OF_YEAR, -DateTimeConstants.DAYS_PER_WEEK);
         try {
-            List<HistoricalQuote> historicalQuote = stock.getHistory(from, to);
-            // get lowest price from week
-
-            // get highest price from week
-            // return high - low
-            return null;
+            List<HistoricalQuote> historicalQuotes = stock.getHistory(from, Calendar.getInstance(), Interval.DAILY);
+            BigDecimal weeklyLow = historicalQuotes.stream().min((q1, q2) -> q1.getLow().compareTo(q2.getLow())).get().getLow();
+            BigDecimal weeklyHigh = historicalQuotes.stream().min((q1, q2) -> q1.getHigh().compareTo(q2.getHigh())).get().getHigh();
+            return weeklyHigh.subtract(weeklyLow);
         } catch (Exception e) {
-            return null;
+            return new BigDecimal(0);
         }
     }
-
-    /*
-
-            Calendar from = Calendar.getInstance();
-        from.add(Calendar.MONTH, -2);
-        Calendar to = from;
-        to.add(Calendar.DAY_OF_YEAR, 1);
-        try {
-            HistoricalQuote historicalQuote = stock.getHistory(from, to).get(0);
-            BigDecimal historicalPrice = historicalQuote.getClose();
-            BigDecimal currentPrice = stock.getQuote().getPrice();
-            BigDecimal targetPrice = historicalPrice.add(historicalPrice.multiply(new BigDecimal(0.9)));
-            return currentPrice.compareTo(targetPrice) < 0;
-        } catch (Exception e) {
-            return false;
-        }
-     */
 
     @Override
     protected boolean isGreaterThanMinSpread(BigDecimal weeklySpread) {

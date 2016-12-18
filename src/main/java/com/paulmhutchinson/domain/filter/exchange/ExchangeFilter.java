@@ -6,6 +6,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -16,9 +18,9 @@ public class ExchangeFilter extends Filter {
 
     public ExchangeFilter() {}
 
-    public ExchangeFilter(Set<String> exchanges) {
-        super(FilterType.EXCHANGE, exchanges.toString());
-        this.exchanges = exchanges;
+    public ExchangeFilter(String exchanges) {
+        super(FilterType.EXCHANGE, exchanges);
+        this.exchanges = new HashSet<>(Arrays.asList(exchanges.split(",")));
     }
 
     @Override

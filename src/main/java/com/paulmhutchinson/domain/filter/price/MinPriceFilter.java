@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 
 @Component("MinPriceFilter")
@@ -17,9 +16,9 @@ public class MinPriceFilter extends Filter {
 
     public MinPriceFilter() {}
 
-    public MinPriceFilter(BigDecimal minPrice) {
-        super(FilterType.MIN_PRICE, minPrice.setScale(2, RoundingMode.FLOOR).toString());
-        this.minPrice = minPrice;
+    public MinPriceFilter(String minPrice) {
+        super(FilterType.MIN_PRICE, minPrice);
+        this.minPrice = new BigDecimal(minPrice);
     }
 
     @Override

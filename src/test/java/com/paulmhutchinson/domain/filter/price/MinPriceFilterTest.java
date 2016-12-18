@@ -26,7 +26,7 @@ public class MinPriceFilterTest {
 
     @Before
     public void init() {
-        minPriceFilter = new MinPriceFilter(MIN_PRICE);
+        minPriceFilter = new MinPriceFilter(MIN_PRICE.toString());
     }
 
     @Test

@@ -8,6 +8,7 @@ import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
@@ -25,13 +26,13 @@ public class StockUtilTest {
 
     @Test
     public void new_CreateNewFileWriterUtil_ExpectInstanceCreated() throws IOException {
-        assertNotNull(StockUtil.getStocksForExchange(exchange));
+        assertNotNull(StockUtil.getStocksForExchange(exchange, Calendar.getInstance()));
     }
 
     @Test(expected = IOException.class)
     public void new2_CreateNewFileWriterUtil_ExpectInstanceCreated() throws IOException {
         when(exchange.getFilename()).thenThrow(IOException.class);
 
-        StockUtil.getStocksForExchange(exchange);
+        StockUtil.getStocksForExchange(exchange, Calendar.getInstance());
     }
 }

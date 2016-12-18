@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 import com.paulmhutchinson.domain.status.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
@@ -13,6 +12,8 @@ import java.util.List;
 
 @Component
 public abstract class Filter implements Serializable {
+
+    public static final String FILTER_CLASS_PREFIX = "com.paulmhutchinson.domain.filter.";
 
     private static transient final Logger LOGGER = LoggerFactory.getLogger(Filter.class);
 
@@ -29,11 +30,18 @@ public abstract class Filter implements Serializable {
         this.filterValue = filterValue;
     }
 
-    @Autowired
     public abstract void filter(List<Stock> stocks);
 
     protected void printStatusToLogger() {
         LOGGER.info(Status.APPLYING_FILTER.getMessage(), filterType, filterValue);
+    }
+
+    public FilterType getFilterType() {
+        return filterType;
+    }
+
+    public String getFilterValue() {
+        return filterValue;
     }
 
     @Override

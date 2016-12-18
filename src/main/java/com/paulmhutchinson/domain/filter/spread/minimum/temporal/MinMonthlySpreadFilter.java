@@ -17,9 +17,9 @@ public class MinMonthlySpreadFilter extends MinSpreadFilter {
 
     public MinMonthlySpreadFilter() {}
 
-    public MinMonthlySpreadFilter(BigDecimal minMonthlySpread) {
-        super(FilterType.MIN_MONTHLY_SPREAD, minMonthlySpread.toString());
-        this.minMonthlySpread = minMonthlySpread;
+    public MinMonthlySpreadFilter(String minMonthlySpread) {
+        super(FilterType.MIN_MONTHLY_SPREAD, minMonthlySpread);
+        this.minMonthlySpread = new BigDecimal(minMonthlySpread);
     }
 
     @Override

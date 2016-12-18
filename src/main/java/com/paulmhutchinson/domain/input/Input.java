@@ -7,7 +7,7 @@ import com.paulmhutchinson.domain.sorter.Sorter;
 
 import java.util.Set;
 
-public class StockInput {
+public class Input {
 
     @SerializedName("filters") private Set<Filter> filters;
     @SerializedName("recognizers") private Set<Recognizer> recognizers;
@@ -16,10 +16,10 @@ public class StockInput {
     @SerializedName("symbolFile") private String symbolFile;
     @SerializedName("output") private Boolean output;
 
-    public StockInput() {
+    public Input() {
     }
 
-    public StockInput(Set<Filter> filters, Set<Recognizer> recognizers, Set<Sorter> sorters, Set<String> symbols, String symbolFile, Boolean output) {
+    public Input(Set<Filter> filters, Set<Recognizer> recognizers, Set<Sorter> sorters, Set<String> symbols, String symbolFile, Boolean output) {
         this.filters = filters;
         this.recognizers = recognizers;
         this.sorters = sorters;

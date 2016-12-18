@@ -1,12 +1,9 @@
 package com.paulmhutchinson.domain.filter;
 
 import com.google.gson.*;
-import com.paulmhutchinson.domain.filter.percentchange.PercentChangeFromYearLowFilter;
-import com.paulmhutchinson.domain.filter.price.MaxPriceFilter;
-import com.paulmhutchinson.domain.filter.spread.minimum.temporal.MinDailySpreadFilter;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Type;
-import java.math.BigDecimal;
 
 public class FilterAdapter implements JsonDeserializer<Filter> {
 
@@ -14,16 +11,16 @@ public class FilterAdapter implements JsonDeserializer<Filter> {
     public Filter deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject =  json.getAsJsonObject();
         FilterType filterType = FilterType.valueOf(jsonObject.get("filterType").getAsString());
-        JsonElement filterValue = jsonObject.get("filterValue");
-
-        if (filterType == FilterType.MAX_PRICE) {
-            return new MaxPriceFilter(new BigDecimal(filterValue.getAsDouble()));
-        } else if (filterType == FilterType.PERCENT_CHANGE_FROM_YEAR_LOW) {
-            return new PercentChangeFromYearLowFilter(new BigDecimal(filterValue.getAsDouble()));
-        } else if (filterType == FilterType.MIN_DAILY_SPREAD) {
-            return new MinDailySpreadFilter(new BigDecimal(filterValue.getAsDouble()));
-        } else {
-            return null;
+        String filterValue = jsonObject.get("filterValue").getAsString();
+        Filter filter = null;
+        try {
+            Class<?> clazz = Class.forName(filterType.getFilterClass());
+            Constructor<?> constructor = clazz.getConstructor(String.class);
+            filter = (Filter) constructor.newInstance(filterValue);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
         }
+        return filter;
     }
 }

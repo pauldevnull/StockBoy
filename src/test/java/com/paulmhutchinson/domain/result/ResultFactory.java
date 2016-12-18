@@ -25,7 +25,7 @@ public class ResultFactory {
     public static Result buildDefaultResult() {
         return ResultBuilder.aResult()
                 .setStartTimestamp(DEFAULT_START_TIMESTAMP.toString())
-                .setExecutionTime(DEFAULT_EXECUTION_TIME)
+                .setExecutionTimeInMilliseconds(DEFAULT_EXECUTION_TIME)
                 .setResultSize(DEFAULT_STOCKS.size())
                 .setFilters(DEFAULT_FILTERS)
                 .setRecognizers(DEFAULT_RECOGNIZERS)

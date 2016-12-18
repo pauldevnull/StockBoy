@@ -23,7 +23,7 @@ public class CurrencyFilterTest {
 
     @Before
     public void init() {
-        currencyFilter = new CurrencyFilter(CURRENCIES);
+        currencyFilter = new CurrencyFilter(CURRENCIES.toString());
     }
 
     @Test

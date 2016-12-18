@@ -1,6 +1,6 @@
 package com.paulmhutchinson.domain.sorter.price;
 
-import com.paulmhutchinson.domain.sorter.SortType;
+import com.paulmhutchinson.domain.sorter.SorterType;
 import com.paulmhutchinson.domain.sorter.Sorter;
 import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
@@ -17,7 +17,7 @@ public class CurrentPriceSorter extends Sorter {
     public CurrentPriceSorter() {}
 
     public CurrentPriceSorter(SortOrder sorterOrder) {
-        super(SortType.CURRENT_PRICE, sorterOrder);
+        super(SorterType.CURRENT_PRICE, sorterOrder);
         this.sorterOrder = sorterOrder;
     }
 

@@ -7,8 +7,10 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 import yahoofinance.Stock;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component("CurrencyFilter")
 public class CurrencyFilter extends Filter {
@@ -17,9 +19,13 @@ public class CurrencyFilter extends Filter {
 
     public CurrencyFilter() {}
 
-    public CurrencyFilter(Set<Currency> currencies) {
-        super(FilterType.CURRENCY, currencies.toString());
-        this.currencies = currencies;
+    public CurrencyFilter(String currencies) {
+        super(FilterType.CURRENCY, currencies);
+        this.currencies = Arrays
+                .asList(currencies.split(","))
+                .stream()
+                .map(Currency::valueOf)
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -30,9 +36,5 @@ public class CurrencyFilter extends Filter {
 
     private boolean isValidCurrency(final String currency) {
         return currencies.contains(Currency.valueOf(currency));
-    }
-
-    public Set<Currency> getCurrencies() {
-        return currencies;
     }
 }

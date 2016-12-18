@@ -35,10 +35,10 @@ public class FilterServiceTest {
     @Before
     public void init() {
         Set<Filter> filters = new HashSet<>(Arrays.asList(
-                new CurrencyFilter(CURRENCIES),
-                new ExchangeFilter(EXCHANGES),
-                new MinPriceFilter(MIN_PRICE),
-                new MaxPriceFilter(MAX_PRICE)
+                new CurrencyFilter(CURRENCIES.toString()),
+                new ExchangeFilter(EXCHANGES.toString()),
+                new MinPriceFilter(MIN_PRICE.toString()),
+                new MaxPriceFilter(MAX_PRICE.toString())
         ));
         filterService = new FilterService(filters);
     }

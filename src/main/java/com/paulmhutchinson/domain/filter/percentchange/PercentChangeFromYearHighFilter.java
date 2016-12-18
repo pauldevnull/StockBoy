@@ -16,9 +16,9 @@ public class PercentChangeFromYearHighFilter extends Filter {
 
     public PercentChangeFromYearHighFilter() {}
 
-    public PercentChangeFromYearHighFilter(BigDecimal percentChangeFromYearHigh) {
-        super(FilterType.PERCENT_CHANGE_FROM_YEAR_HIGH, percentChangeFromYearHigh.toString());
-        this.percentChangeFromYearHigh = percentChangeFromYearHigh;
+    public PercentChangeFromYearHighFilter(String percentChangeFromYearHigh) {
+        super(FilterType.PERCENT_CHANGE_FROM_YEAR_HIGH, percentChangeFromYearHigh);
+        this.percentChangeFromYearHigh = new BigDecimal(percentChangeFromYearHigh);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class ExchangeFilterTest {
 
     @Before
     public void init() {
-        exchangeFilter = new ExchangeFilter(EXCHANGES);
+        exchangeFilter = new ExchangeFilter(EXCHANGES.toString());
     }
 
     @Test

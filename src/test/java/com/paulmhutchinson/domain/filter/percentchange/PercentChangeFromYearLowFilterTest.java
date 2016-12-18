@@ -26,7 +26,7 @@ public class PercentChangeFromYearLowFilterTest {
 
     @Before
     public void init() {
-        percentChangeFromYearLowFilter = new PercentChangeFromYearLowFilter(PERCENT_CHANGE_FROM_YEAR_LOW);
+        percentChangeFromYearLowFilter = new PercentChangeFromYearLowFilter(PERCENT_CHANGE_FROM_YEAR_LOW.toString());
     }
 
     @Test

@@ -23,12 +23,12 @@ public class FilterFactory {
 
     public static Set<Filter> buildDefaultFilters() {
         return new LinkedHashSet<>(Arrays.asList(
-                new CurrencyFilter(new HashSet<>(Collections.singletonList(DEFAULT_CURRENCY))),
-                new ExchangeFilter(new HashSet<>(Collections.singletonList(DEFAULT_EXCHANGE.getExchange()))),
-                new MinPriceFilter(DEFAULT_MIN_PRICE),
-                new MaxPriceFilter(DEFAULT_MAX_PRICE),
-                new PercentChangeFromYearLowFilter(DEFAULT_PERCENT_CHANGE_FROM_YEAR_LOW),
-                new PercentChangeFromYearHighFilter(DEFAULT_PERCENT_CHANGE_FROM_YEAR_HIGH)
+                new CurrencyFilter(Collections.singletonList(DEFAULT_CURRENCY).toString()),
+                new ExchangeFilter(Collections.singletonList(DEFAULT_EXCHANGE.getExchange()).toString()),
+                new MinPriceFilter(DEFAULT_MIN_PRICE.toString()),
+                new MaxPriceFilter(DEFAULT_MAX_PRICE.toString()),
+                new PercentChangeFromYearLowFilter(DEFAULT_PERCENT_CHANGE_FROM_YEAR_LOW.toString()),
+                new PercentChangeFromYearHighFilter(DEFAULT_PERCENT_CHANGE_FROM_YEAR_HIGH.toString())
         ));
     }
 }
