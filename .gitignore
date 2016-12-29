@@ -1,5 +1,6 @@
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion
 
+*.csv
 *.json
 *.iml
 

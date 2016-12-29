@@ -1,7 +1,7 @@
-package com.paulmhutchinson.domain.filter.spread.maximum.temporal;
+package com.paulmhutchinson.domain.filter.price.spread.maximum.temporal;
 
 import com.paulmhutchinson.domain.filter.FilterType;
-import com.paulmhutchinson.domain.filter.spread.maximum.MaxSpreadFilter;
+import com.paulmhutchinson.domain.filter.price.spread.maximum.MaxSpreadFilter;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 import yahoofinance.Stock;

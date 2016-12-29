@@ -1,4 +1,4 @@
-package com.paulmhutchinson.domain.filter.percentchange;
+package com.paulmhutchinson.domain.filter.price.percentchange;
 
 import com.paulmhutchinson.domain.stock.StockFactory;
 import org.junit.Before;
@@ -16,24 +16,24 @@ import java.util.Set;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PercentChangeFromYearLowFilterTest {
+public class PercentChangeFromYearHighFilterTest {
 
-    private static final BigDecimal PERCENT_CHANGE_FROM_YEAR_LOW = new BigDecimal(50);
+    private static final BigDecimal PERCENT_CHANGE_FROM_YEAR_HIGH = new BigDecimal(50);
     private static final Set<String> VALID_SYMBOLS = new HashSet<>(Arrays.asList("A", "B", "C", "D", "E"));
     private List<Stock> stocks = StockFactory.buildDefaultStocks();
 
-    private PercentChangeFromYearLowFilter percentChangeFromYearLowFilter;
+    private PercentChangeFromYearHighFilter percentChangeFromYearHighFilter;
 
     @Before
     public void init() {
-        percentChangeFromYearLowFilter = new PercentChangeFromYearLowFilter(PERCENT_CHANGE_FROM_YEAR_LOW.toString());
+        percentChangeFromYearHighFilter = new PercentChangeFromYearHighFilter(PERCENT_CHANGE_FROM_YEAR_HIGH.toString());
     }
 
     @Test
     public void apply_WithListOfStocksAndMaxPrice_ExpectOnlyStocksWithPriceEqualToOrLessThanMaxPrice() {
         List<Stock> validStocks = StockFactory.getStocksFromSymbols(stocks, VALID_SYMBOLS);
 
-        percentChangeFromYearLowFilter.filter(stocks);
+        percentChangeFromYearHighFilter.filter(stocks);
 
         assertTrue(stocks.equals(validStocks));
     }

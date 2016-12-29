@@ -30,6 +30,7 @@
         <joda.time.version>2.9.5</joda.time.version>
         <junit.version>4.12</junit.version>
         <mockito.version>2.2.11</mockito.version>
+        <supercsv.version>2.4.0</supercsv.version>
     </properties>
 
     <dependencies>
@@ -78,6 +79,12 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>${mockito.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.supercsv</groupId>
+            <artifactId>super-csv</artifactId>
+            <version>${supercsv.version}</version>
         </dependency>
     </dependencies>
 </project>

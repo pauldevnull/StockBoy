@@ -4,10 +4,10 @@ import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.FilterType;
 import com.paulmhutchinson.domain.filter.currency.CurrencyFilter;
 import com.paulmhutchinson.domain.filter.exchange.ExchangeFilter;
-import com.paulmhutchinson.domain.filter.percentchange.PercentChangeFromYearHighFilter;
-import com.paulmhutchinson.domain.filter.percentchange.PercentChangeFromYearLowFilter;
 import com.paulmhutchinson.domain.filter.price.MaxPriceFilter;
 import com.paulmhutchinson.domain.filter.price.MinPriceFilter;
+import com.paulmhutchinson.domain.filter.price.percentchange.PercentChangeFromYearHighFilter;
+import com.paulmhutchinson.domain.filter.price.percentchange.PercentChangeFromYearLowFilter;
 import com.paulmhutchinson.domain.stock.Currency;
 import com.paulmhutchinson.domain.stock.Exchange;
 

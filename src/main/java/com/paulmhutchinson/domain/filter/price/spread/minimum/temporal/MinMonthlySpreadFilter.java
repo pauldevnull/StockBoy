@@ -1,7 +1,7 @@
-package com.paulmhutchinson.domain.filter.spread.minimum.temporal;
+package com.paulmhutchinson.domain.filter.price.spread.minimum.temporal;
 
 import com.paulmhutchinson.domain.filter.FilterType;
-import com.paulmhutchinson.domain.filter.spread.minimum.MinSpreadFilter;
+import com.paulmhutchinson.domain.filter.price.spread.minimum.MinSpreadFilter;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 import yahoofinance.Stock;

@@ -22,9 +22,9 @@ public class CurrencyFilter extends Filter {
     public CurrencyFilter(String currencies) {
         super(FilterType.CURRENCY, currencies);
         this.currencies = Arrays
-                .asList(currencies.split(","))
+                .asList(currencies.replace('[', ' ').replace(']', ' ').trim().split(","))
                 .stream()
-                .map(Currency::valueOf)
+                .map(c -> Currency.valueOf(c.trim()))
                 .collect(Collectors.toSet());
     }
 
@@ -35,6 +35,10 @@ public class CurrencyFilter extends Filter {
     }
 
     private boolean isValidCurrency(final String currency) {
-        return currencies.contains(Currency.valueOf(currency));
+        try {
+            return currencies.contains(Currency.valueOf(currency));
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 }

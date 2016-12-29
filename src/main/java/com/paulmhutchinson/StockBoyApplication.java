@@ -2,6 +2,7 @@ package com.paulmhutchinson;
 
 import com.paulmhutchinson.domain.result.Result;
 import com.paulmhutchinson.service.filewriter.FileWriterService;
+import com.paulmhutchinson.service.intraday.IntradayService;
 import com.paulmhutchinson.service.result.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -10,14 +11,23 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import yahoofinance.YahooFinance;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Set;
 import java.util.logging.Level;
 
 
 /*
-DO MIN/MAX DAILY BOUNCE (5 cent intervals) COUNT
- */
+    DO MIN/MAX DAILY BOUNCE (5 cent intervals) COUNT
+    ... days with interval toggle (bc we can't count intra-day data...only daily intervals)
+
+    - filter only stocks that have gone UP in price over the past year
+*/
+
+
+
+
+
 
 @SpringBootApplication
 public class StockBoyApplication implements CommandLineRunner {
@@ -43,7 +53,7 @@ public class StockBoyApplication implements CommandLineRunner {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         YahooFinance.logger.setLevel(Level.OFF);
         SpringApplication.run(StockBoyApplication.class, args).close();
     }
@@ -54,3 +64,12 @@ public class StockBoyApplication implements CommandLineRunner {
         }
     }
 }
+
+
+
+
+
+
+
+
+// calculate percentage of days in year where the stock closed above/below the open price

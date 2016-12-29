@@ -1,7 +1,7 @@
-package com.paulmhutchinson.domain.filter.spread.minimum;
+package com.paulmhutchinson.domain.filter.price.spread.minimum;
 
 import com.paulmhutchinson.domain.filter.FilterType;
-import com.paulmhutchinson.domain.filter.spread.SpreadFilter;
+import com.paulmhutchinson.domain.filter.price.spread.SpreadFilter;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;

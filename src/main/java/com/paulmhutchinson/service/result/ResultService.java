@@ -52,11 +52,11 @@ public class ResultService {
                 .setExecutionTimeInSeconds(executionTimeInMilliseconds / MILLIS_PER_SECOND)
                 .setExecutionTimeInMinutes(executionTimeInMilliseconds / MILLIS_PER_MINUTE)
                 .setResultSize(stocks.size())
+                .setSummary(stocks.stream().map(Stock::toString).collect(Collectors.toList()))
+                .setStocks(stocks)
                 .setFilters(filterService.getFilters())
                 .setRecognizers(recognizerService.getRecognizers())
                 .setSorters(sorterService.getSorters())
-                .setSummary(stocks.stream().map(Stock::toString).collect(Collectors.toList()))
-                .setStocks(stocks)
                 .build();
     }
 }

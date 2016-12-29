@@ -15,11 +15,11 @@ public class ResultBuilder {
     private double executionTimeInSeconds;
     private double executionTimeInMinutes;
     private int resultSize;
+    private List<String> summary;
+    private List<Stock> stocks;
     private Set<Filter> filters;
     private Set<Recognizer> recognizers;
     private Set<Sorter> sorters;
-    private List<String> summary;
-    private List<Stock> stocks;
 
     public static ResultBuilder aResult() {
         return new ResultBuilder();
@@ -50,6 +50,16 @@ public class ResultBuilder {
         return this;
     }
 
+    public ResultBuilder setSummary(List<String> summary) {
+        this.summary = summary;
+        return this;
+    }
+
+    public ResultBuilder setStocks(List<Stock> stocks) {
+        this.stocks = stocks;
+        return this;
+    }
+
     public ResultBuilder setFilters(Set<Filter> filters) {
         this.filters = filters;
         return this;
@@ -65,17 +75,7 @@ public class ResultBuilder {
         return this;
     }
 
-    public ResultBuilder setSummary(List<String> summary) {
-        this.summary = summary;
-        return this;
-    }
-
-    public ResultBuilder setStocks(List<Stock> stocks) {
-        this.stocks = stocks;
-        return this;
-    }
-
     public Result build() {
-        return new Result(startTimestamp, executionTimeInMilliseconds, executionTimeInSeconds, executionTimeInMinutes, resultSize, filters, recognizers, sorters, summary, stocks);
+        return new Result(startTimestamp, executionTimeInMilliseconds, executionTimeInSeconds, executionTimeInMinutes, resultSize, summary, stocks, filters, recognizers, sorters);
     }
 }

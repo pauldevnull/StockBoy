@@ -17,43 +17,43 @@ public class Result implements Serializable {
     @SerializedName("executionTimeInSeconds") private double executionTimeInSeconds;
     @SerializedName("executionTimeInMinutes") private double executionTimeInMinutes;
     @SerializedName("resultSize") private int resultSize;
+    @SerializedName("summary") private List<String> summary;
+    @SerializedName("stocks") private List<Stock> stocks;
     @SerializedName("filters") private Set<Filter> filters;
     @SerializedName("recognizers") private Set<Recognizer> recognizers;
     @SerializedName("sorters") private Set<Sorter> sorters;
-    @SerializedName("summary") private List<String> summary;
-    @SerializedName("stocks") private List<Stock> stocks;
 
     public Result(final String startTimestamp,
                   final double executionTimeInMilliseconds,
                   final double executionTimeInSeconds,
                   final double executionTimeInMinutes,
                   final int resultSize,
+                  final List<String> summary,
+                  final List<Stock> stocks,
                   final Set<Filter> filters,
                   final Set<Recognizer> recognizers,
-                  final Set<Sorter> sorters,
-                  final List<String> summary,
-                  final List<Stock> stocks) {
+                  final Set<Sorter> sorters) {
         this.startTimestamp = startTimestamp;
         this.executionTimeInMilliseconds = executionTimeInMilliseconds;
         this.executionTimeInSeconds = executionTimeInSeconds;
         this.executionTimeInMinutes = executionTimeInMinutes;
         this.resultSize = resultSize;
+        this.summary = summary;
+        this.stocks = stocks;
         this.filters = filters;
         this.recognizers = recognizers;
         this.sorters = sorters;
-        this.summary = summary;
-        this.stocks = stocks;
     }
 
     @Override
     public String toString() {
         return "Result{" +
                 "resultSize=" + resultSize +
+                ", summary=" + summary +
+                ", stocks=" + stocks +
                 ", filters=" + filters +
                 ", recognizers=" + recognizers +
                 ", sorters=" + sorters +
-                ", summary=" + summary +
-                ", stocks=" + stocks +
                 '}';
     }
 }

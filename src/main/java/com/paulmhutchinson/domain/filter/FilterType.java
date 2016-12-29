@@ -2,16 +2,16 @@ package com.paulmhutchinson.domain.filter;
 
 import com.paulmhutchinson.domain.filter.currency.CurrencyFilter;
 import com.paulmhutchinson.domain.filter.exchange.ExchangeFilter;
-import com.paulmhutchinson.domain.filter.percentchange.PercentChangeFromYearHighFilter;
-import com.paulmhutchinson.domain.filter.percentchange.PercentChangeFromYearLowFilter;
+import com.paulmhutchinson.domain.filter.price.percentchange.PercentChangeFromYearHighFilter;
+import com.paulmhutchinson.domain.filter.price.percentchange.PercentChangeFromYearLowFilter;
 import com.paulmhutchinson.domain.filter.price.MaxPriceFilter;
 import com.paulmhutchinson.domain.filter.price.MinPriceFilter;
-import com.paulmhutchinson.domain.filter.spread.maximum.temporal.MaxDailySpreadFilter;
-import com.paulmhutchinson.domain.filter.spread.maximum.temporal.MaxMonthlySpreadFilter;
-import com.paulmhutchinson.domain.filter.spread.maximum.temporal.MaxWeeklySpreadFilter;
-import com.paulmhutchinson.domain.filter.spread.minimum.temporal.MinDailySpreadFilter;
-import com.paulmhutchinson.domain.filter.spread.minimum.temporal.MinMonthlySpreadFilter;
-import com.paulmhutchinson.domain.filter.spread.minimum.temporal.MinWeeklySpreadFilter;
+import com.paulmhutchinson.domain.filter.price.spread.maximum.temporal.MaxDailySpreadFilter;
+import com.paulmhutchinson.domain.filter.price.spread.maximum.temporal.MaxMonthlySpreadFilter;
+import com.paulmhutchinson.domain.filter.price.spread.maximum.temporal.MaxWeeklySpreadFilter;
+import com.paulmhutchinson.domain.filter.price.spread.minimum.temporal.MinDailySpreadFilter;
+import com.paulmhutchinson.domain.filter.price.spread.minimum.temporal.MinMonthlySpreadFilter;
+import com.paulmhutchinson.domain.filter.price.spread.minimum.temporal.MinWeeklySpreadFilter;
 
 public enum FilterType {
 

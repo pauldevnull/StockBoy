@@ -1,7 +1,7 @@
-package com.paulmhutchinson.domain.filter.spread.maximum;
+package com.paulmhutchinson.domain.filter.price.spread.maximum;
 
 import com.paulmhutchinson.domain.filter.FilterType;
-import com.paulmhutchinson.domain.filter.spread.SpreadFilter;
+import com.paulmhutchinson.domain.filter.price.spread.SpreadFilter;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -19,6 +19,6 @@ public abstract class MaxSpreadFilter extends SpreadFilter {
     }
 
     protected boolean isLessThanMaxSpread(BigDecimal spread) {
-        return spread.compareTo(maxSpread) >= 0;
+        return spread.compareTo(maxSpread) <= 0;
     }
 }

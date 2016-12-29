@@ -1,4 +1,4 @@
-package com.paulmhutchinson.domain.filter.percentchange;
+package com.paulmhutchinson.domain.filter.price.percentchange;
 
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.FilterType;
