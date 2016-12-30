@@ -1,19 +1,12 @@
 package com.paulmhutchinson;
 
-import com.paulmhutchinson.domain.result.Result;
-import com.paulmhutchinson.service.filewriter.FileWriterService;
-import com.paulmhutchinson.service.intraday.IntradayService;
-import com.paulmhutchinson.service.result.ResultService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import yahoofinance.YahooFinance;
 
-import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Set;
 import java.util.logging.Level;
 
 
@@ -30,8 +23,9 @@ import java.util.logging.Level;
 
 
 @SpringBootApplication
-public class StockBoyApplication implements CommandLineRunner {
+public class StockBoyApplication  extends SpringBootServletInitializer {
 
+/*
     @Resource
     private Boolean output;
     @Resource
@@ -52,10 +46,17 @@ public class StockBoyApplication implements CommandLineRunner {
             throw new ErrorProcessingResultException(e.getMessage());
         }
     }
+*/
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        YahooFinance.logger.setLevel(Level.OFF);
+        return application.sources(StockBoyApplication.class);
+    }
 
     public static void main(String[] args) throws IOException {
         YahooFinance.logger.setLevel(Level.OFF);
-        SpringApplication.run(StockBoyApplication.class, args).close();
+        SpringApplication.run(StockBoyApplication.class, args);
     }
 
     private static final class ErrorProcessingResultException extends RuntimeException {

@@ -22,9 +22,10 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Set;
 
-@Configuration
+//@Configuration
 public class InputConfiguration {
 
+    /*
     @Value("${input.file}")
     private String file;
 
@@ -78,5 +79,5 @@ public class InputConfiguration {
         }
         return historicalStart;
     }
-
+*/
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="index.base" template="/WEB-INF/views/layouts/baseLayout.jsp">
+        <put-attribute name="head" value="/WEB-INF/views/common/head.jsp"/>
+        <put-attribute name="topbar" value="/WEB-INF/views/common/topbar.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/common/taglibIncludes.jsp"/>
+        <put-attribute name="jsIncludes" value="/WEB-INF/views/common/jsIncludes.jsp"/>
+        <put-list-attribute name="javascriptsAsync" cascade="true">
+        </put-list-attribute>
+        <put-list-attribute name="javascripts" cascade="true">
+            <add-attribute value="/resources/js/vendor/jquery.js"/>
+            <add-attribute value="/resources/js/vendor/bootstrap.min.js"/>
+            <add-attribute value="/resources/js/vendor/jquery.dataTables.min.js"/>
+            <add-attribute value="/resources/js/vendor/responsive.bootstrap.min.js"/>
+        </put-list-attribute>
+        <put-list-attribute name="stylesheets" cascade="true">
+            <add-attribute value="/resources/css/bootstrap.min.css"/>
+            <add-attribute value="/resources/css/responsive.bootstrap.min.css"/>
+        </put-list-attribute>
+    </definition>
+
+    <definition name="displayIndex" extends="index.base">
+        <put-attribute name="menuClass" value="workflow" cascade="true"/>
+        <put-attribute name="pageTitle" value="Index" cascade="true"/>
+        <put-attribute name="body" value="displayIndexPage"/>
+        <put-list-attribute name="javascripts" cascade="true">
+            <add-attribute value="/resources/js/index/index.js"/>
+        </put-list-attribute>
+        <put-list-attribute name="stylesheets" cascade="true" inherit="true">
+            <add-attribute value="/resources/css/index.css"/>
+        </put-list-attribute>
+    </definition>
+
+    <definition name="displayIndexPage" template="/WEB-INF/views/index.jsp"/>
+</tiles-definitions>
