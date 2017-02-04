@@ -11,29 +11,36 @@
             <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
         </div>
 
+
+        <label class="glyphicon glyphicon-expand collapsable"><span>Filters</span></label>
         <jsp:include page="/WEB-INF/views/partial/filters.jsp" />
 
+        <br>
+
+        <label class="glyphicon glyphicon-expand collapsable"><span>Columns</span></label>
         <jsp:include page="/WEB-INF/views/partial/visibility.jsp" />
 
-        <table id="stocks" class="table table-striped table-bordered table-hover dt-responsive nowrap" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th>Symbol</th>
-                    <th>Name</th>
-                    <th>Quote</th>
-                    <th>Currency</th>
-                </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="stock" items="${stocks}">
-                <tr>
-                    <td>${stock.getSymbol()}</td>
-                    <td>${stock.getName()}</td>
-                    <td>${stock.getQuote().getPrice()}</td>
-                    <td>${stock.getCurrency()}</td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+        <div>
+            <table id="stocks" class="table table-striped table-bordered table-hover dt-responsive nowrap" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>Quote</th>
+                        <th>Currency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="stock" items="${stocks}">
+                    <tr>
+                        <td>${stock.getSymbol()}</td>
+                        <td>${stock.getName()}</td>
+                        <td>${stock.getQuote().getPrice()}</td>
+                        <td>${stock.getCurrency()}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>

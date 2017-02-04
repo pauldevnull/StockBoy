@@ -17,10 +17,14 @@
             <add-attribute value="/resources/js/vendor/bootstrap.min.js"/>
             <add-attribute value="/resources/js/vendor/jquery.dataTables.min.js"/>
             <add-attribute value="/resources/js/vendor/responsive.bootstrap.min.js"/>
+            <add-attribute value="/resources/js/vendor/jquery-ui.min.js"/>
         </put-list-attribute>
         <put-list-attribute name="stylesheets" cascade="true">
             <add-attribute value="/resources/css/bootstrap.min.css"/>
             <add-attribute value="/resources/css/responsive.bootstrap.min.css"/>
+            <add-attribute value="/resources/css/jquery-ui.min.css"/>
+            <add-attribute value="/resources/css/jquery-ui.structure.min.css"/>
+            <add-attribute value="/resources/css/jquery-ui.theme.min.css"/>
         </put-list-attribute>
     </definition>
 

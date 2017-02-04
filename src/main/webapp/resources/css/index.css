@@ -2,6 +2,24 @@ body {
     padding-top: 50px;
 }
 
+.collapsable {
+    min-height: 30px;
+    min-width: 100%;
+    padding-bottom: 8px;
+    font-size: 30px;
+}
+
+.collapsable > span {
+    font-size: 38px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.collapsable > div {
+    display: none;
+    font-size: 16px;
+}
+
+
 .starter-template {
     padding: 40px 15px;
     text-align: center;
@@ -9,4 +27,30 @@ body {
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background: lightblue;
+}
+
+/* Tags */
+.tag {
+    font-size: 14px;
+    padding: .3em .4em .4em;
+    margin: 0 .1em;
+}
+.tag a {
+    color: #bbb;
+    cursor: pointer;
+    opacity: 0.6;
+}
+.tag a:hover {
+    opacity: 1.0
+}
+.tag .remove {
+    vertical-align: bottom;
+    top: 0;
+}
+.tag a {
+    margin: 0 0 0 .3em;
+}
+.tag a .glyphicon-white {
+    color: #fff;
+    margin-bottom: 2px;
 }

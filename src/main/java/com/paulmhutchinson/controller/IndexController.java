@@ -1,6 +1,7 @@
 package com.paulmhutchinson.controller;
 
 import com.paulmhutchinson.domain.filter.Filter;
+import com.paulmhutchinson.domain.filter.FilterType;
 import com.paulmhutchinson.domain.filter.price.MaxPriceFilter;
 import com.paulmhutchinson.util.stock.StockUtil;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +41,7 @@ public class IndexController {
         Filter filter = new MaxPriceFilter("0.99");
         filter.filter(stocks);
         model.addAttribute("stocks", stocks);
+        model.addAttribute("filterTypes", FilterType.values());
         return DISPLAY_INDEX;
     }
 }

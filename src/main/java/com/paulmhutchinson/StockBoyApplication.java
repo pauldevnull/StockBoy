@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 
 
+
+// Variable: ask for or sort by...average price change (high - low) over past week (maybe include frequency) as a ration of the current price
+
 /*
     DO MIN/MAX DAILY BOUNCE (5 cent intervals) COUNT
     ... days with interval toggle (bc we can't count intra-day data...only daily intervals)
