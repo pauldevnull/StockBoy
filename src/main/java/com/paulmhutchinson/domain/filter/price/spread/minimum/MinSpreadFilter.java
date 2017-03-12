@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Component("MinSpreadFilter")
 public abstract class MinSpreadFilter extends SpreadFilter {
 
-    public transient BigDecimal minSpread;
+    private transient BigDecimal minSpread;
 
     public MinSpreadFilter() {}
 

@@ -1,6 +1,5 @@
 package com.paulmhutchinson.util.input;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.filter.FilterAdapter;
@@ -23,13 +22,16 @@ public final class InputUtil {
     }
 
     public static Input process(String filename) throws IOException {
-        String json = new String(Files.readAllBytes(Paths.get(filename)));
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Filter.class, new FilterAdapter());
         gsonBuilder.registerTypeAdapter(Recognizer.class, new RecognizerAdapter());
         gsonBuilder.registerTypeAdapter(Sorter.class, new SorterAdapter());
-        Gson gson = gsonBuilder.create();
+        return gsonBuilder
+                .create()
+                .fromJson(extractJsonFromFile(filename), Input.class);
+    }
 
-        return gson.fromJson(json, Input.class);
+    private static String extractJsonFromFile(String filename) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(filename)));
     }
 }

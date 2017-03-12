@@ -21,9 +21,11 @@ public class CurrencyFilter extends Filter {
 
     public CurrencyFilter(String currencies) {
         super(FilterType.CURRENCY, currencies);
-        this.currencies = Arrays
-                .asList(currencies.replace('[', ' ').replace(']', ' ').trim().split(","))
-                .stream()
+        this.currencies = Arrays.stream(currencies
+                .replace('[', ' ')
+                .replace(']', ' ')
+                .trim()
+                .split(","))
                 .map(c -> Currency.valueOf(c.trim()))
                 .collect(Collectors.toSet());
     }

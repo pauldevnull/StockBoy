@@ -1,6 +1,5 @@
 package com.paulmhutchinson.domain.input;
 
-import com.google.gson.annotations.SerializedName;
 import com.paulmhutchinson.domain.filter.Filter;
 import com.paulmhutchinson.domain.recognizer.Recognizer;
 import com.paulmhutchinson.domain.sorter.Sorter;
@@ -9,23 +8,31 @@ import java.util.Set;
 
 public class Input {
 
-    @SerializedName("filters") private Set<Filter> filters;
-    @SerializedName("recognizers") private Set<Recognizer> recognizers;
-    @SerializedName("sorters") private Set<Sorter> sorters;
-    @SerializedName("symbols") private Set<String> symbols;
-    @SerializedName("symbolFile") private String symbolFile;
-    @SerializedName("output") private Boolean output;
+    private Set<Filter> filters;
+    private Set<Recognizer> recognizers;
+    private Set<Sorter> sorters;
+    private Set<String> symbols;
+    private String symbolFile;
+    private Boolean output;
+    private Boolean isDeepAnalysis;
 
     public Input() {
     }
 
-    public Input(Set<Filter> filters, Set<Recognizer> recognizers, Set<Sorter> sorters, Set<String> symbols, String symbolFile, Boolean output) {
+    public Input(Set<Filter> filters,
+                 Set<Recognizer> recognizers,
+                 Set<Sorter> sorters,
+                 Set<String> symbols,
+                 String symbolFile,
+                 Boolean output,
+                 Boolean isDeepAnalysis) {
         this.filters = filters;
         this.recognizers = recognizers;
         this.sorters = sorters;
         this.symbols = symbols;
         this.symbolFile = symbolFile;
         this.output = output;
+        this.isDeepAnalysis = isDeepAnalysis;
     }
 
     public Set<Filter> getFilters() {
@@ -74,5 +81,13 @@ public class Input {
 
     public void setOutput(Boolean output) {
         this.output = output;
+    }
+
+    public Boolean isDeepAnalysis() {
+        return isDeepAnalysis;
+    }
+
+    public void setDeepAnalysis(Boolean deepAnalysis) {
+        isDeepAnalysis = deepAnalysis;
     }
 }

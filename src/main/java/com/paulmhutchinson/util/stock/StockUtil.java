@@ -1,9 +1,11 @@
 package com.paulmhutchinson.util.stock;
 
+import com.google.gson.Gson;
 import com.paulmhutchinson.domain.status.Status;
 import com.paulmhutchinson.domain.stock.Exchange;
 import com.paulmhutchinson.util.filewriter.FileWriterUtil;
 import org.apache.commons.csv.CSVFormat;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import yahoofinance.Stock;

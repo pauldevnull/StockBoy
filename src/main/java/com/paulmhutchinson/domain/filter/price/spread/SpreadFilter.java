@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Component("SpreadFilter")
 public abstract class SpreadFilter extends Filter {
 
-    private IntradayService intradayService;
+    private transient IntradayService intradayService;
 
     public SpreadFilter() {
         intradayService = new IntradayService();

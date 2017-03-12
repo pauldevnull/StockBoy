@@ -1,6 +1,5 @@
 package com.paulmhutchinson.domain.filter;
 
-import com.google.gson.annotations.SerializedName;
 import com.paulmhutchinson.domain.status.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +14,7 @@ public abstract class Filter implements Serializable {
 
     private static transient final Logger LOGGER = LoggerFactory.getLogger(Filter.class);
 
-    @SerializedName("filterType")
     private FilterType filterType;
-    @SerializedName("filterValue")
     private String filterValue;
 
     protected Filter() {}

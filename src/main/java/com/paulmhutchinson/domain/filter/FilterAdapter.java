@@ -22,7 +22,7 @@ public class FilterAdapter implements JsonDeserializer<Filter> {
     }
 
     private static final class InvalidFilterRequestException extends RuntimeException {
-        public InvalidFilterRequestException(String message) {
+        InvalidFilterRequestException(String message) {
             super(message);
         }
     }

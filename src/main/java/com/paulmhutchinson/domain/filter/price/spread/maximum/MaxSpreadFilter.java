@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Component("MaxSpreadFilter")
 public abstract class MaxSpreadFilter extends SpreadFilter {
 
-    public transient BigDecimal maxSpread;
+    private transient BigDecimal maxSpread;
 
     public MaxSpreadFilter() {}
 
